@@ -1,0 +1,41 @@
+<template>
+  <section class="section" id="section-rooms" >
+        <div class="container">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+              <h2 class="heading" data-aos="fade-up">Rooms &amp; Suites</h2>
+              <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            </div>
+          </div>
+          <div class="row justify-content-center text-center mb-5" v-if="rooms.length===0" >
+            <div class="col-md-7">
+            Room not uploaded yet
+            </div>
+          </div>
+          <div class="row" v-else >
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" v-for = "room in rooms" v-bind:key="room.id">{{ room }}
+              <a href="#" class="room">
+                <figure class="img-wrap">
+                  <img src="/static/dist/src/images/img_20k.jpg" alt="Free website template" class="img-fluid mb-3">
+                </figure>
+                <div class="p-3 text-center room-info">
+                  <h2>Single Room</h2>
+                  <span class="text-uppercase letter-spacing-1">20K / per night</span>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+</template>
+
+<script>
+export default {
+  name: 'RoomSection',
+  props: {
+    msg: { String, default:''},
+    rooms: { Array , default: []}
+  },
+}
+</script>
