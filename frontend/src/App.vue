@@ -68,35 +68,24 @@ export default {
         </div>
       </section>
 
-
-
-      <footer class="section footer-section">
-        <div class="container">
-          <div class="row mb-2">
-            <div class="col-md-3 mb-5">
-              <ul class="list-unstyled link">
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">The Rooms and Suites</a></li>
-                <li><a href="#">Contact Us</a></li>
-               <li><a href="#">Restaurant</a></li>
-               <li><a href="#">Booking & Reservation</a></li>
-              </ul>
-            </div>
-            <div class="col-md-3 mb-2 pr-md-5 contact-info">
-              <!-- <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li> -->
-              <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> Fate road, <br> Opposite fresh hotels, Ilorin, Kwara State, Nigeria</span></p>
-              <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
-              <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@yourdomain.com</span></p>
-            </div>
-            <div class="col-md-6 mb-2 pr-md-2 contact-info">
-                <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="425" id="gmap_canvas" src="https://maps.google.com/maps?q=Rotana%20hotel%20along%20shoprite%20fate%20road,%20ilorin,%20kwara%20state&t=k&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2piratebay.org">pirate bay</a><br><a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div></div>
-            </div>
-          
+  
+      <footer class="section. footer-section">
+        <div class="container text-center p-3">
+          <div class="row align-items-center justify-content-center text-center">
+            <p class="col-md-6 text-center">
+              <a href="https://acsolotltd.tk" target="_blank" >Acsolot Integrated Services</a> &copy; 2022
+            </p>
+          </div>
+          <div class="row align-items-center justify-content-center center">
+            <p class="col-md-6 text-center social">
+              <a href="https://www.facebook.com/AgesXpat"><span class="fa fa-facebook"></span></a>
+              <a href="https://www.linkedin.com/in/ibmabdulsalam/"><span class="fa fa-linkedin"></span></a>
+              <a href="tel:+2348100482341"><span class="fa fa-phone"></span></a>
+            </p>
           </div>
         </div>
       </footer>
-
-    
+ 
       <!-- Modal -->
       <div class="modal fade " id="reservation-form" tabindex="-1" role="dialog" aria-labelledby="reservationFormTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -187,8 +176,3 @@ export default {
       
 
 </template>
-<style scoped>
-.gmap_canvas {overflow:hidden;background:none!important;height: 280px;width:500px;};
-.mapouter{position:relative;text-align:right;height:280px;width:500px;}
-
-</style>

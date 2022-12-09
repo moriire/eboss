@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Rotana Admin') }}{% endblock %}
+
+{% block branding %}
+<nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
+      <div class="container">
+        <h1><a class="navbar-brand" href="{% url 'admin:index' %}" ><span class="text-danger">R</span>otana</a></h1>
+            <!-- END menu-toggle -->
+      </div>
+    </nav>
+    <!-- END nav -->
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -2,6 +2,31 @@ from django.db import models
 from rest_framework import serializers#.viewsets import ModelViewSet
 from imgutil import thumbnail
 
+class Page(models.Model):
+    CHOICES = (
+        ("home", "home"),
+        ("about", "about"),
+        ("contact", "contact"),
+        ("menu", "menu"),
+        ("review", "review"),
+    )
+    title = models.CharField(max_length=15, choices=CHOICES )
+    subtitle = models.CharField(max_length=128)
+    enable = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Enable & Disable Page"
+        verbose_name_plural = "Enable & Disable Pages"
+
+class PageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
+        fields = "__all__"
+
 class Menu(models.Model):
     CHOICES = (
         ("drink", "drink"),
@@ -9,13 +34,39 @@ class Menu(models.Model):
     )
     name = models.CharField(max_length=50)
     nature = models.CharField(max_length=15, choices=CHOICES )
-    #img = models.ImageField()
     price= models.FloatField(default=0.0)
-    enable = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Menu"
+        verbose_name_plural = "Food & Drink Section"
+
+
+class Contact(models.Model):
+    CHOICES = (
+        ("phone", "phone"),
+        ("social", "social"),
+    )
+    nature = models.CharField(max_length=15, choices=CHOICES )
+    name = models.CharField(max_length=15)
+    phone = models.CharField(max_length=11, null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "contact"
+        verbose_name_plural = "Contact Section"
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = "__all__"
 
 class Room(models.Model):
     title = models.CharField(max_length=30)
@@ -23,11 +74,14 @@ class Room(models.Model):
     price = models.FloatField(max_length=30, null=True, blank=True )
     img = models.ImageField(upload_to="rooms/")
     note = models.TextField(blank = True)
-    enable = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = "contact"
+        verbose_name_plural = "Rooms and Suites Section"
 
     def save(self, *a, **b):
         if self.img:
@@ -48,6 +102,11 @@ class Staff(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    class Meta:
+        verbose_name = "Staff"
+        verbose_name_plural = "Staff Section"
+
 
     def save(self, *a, **b):
         if self.img:

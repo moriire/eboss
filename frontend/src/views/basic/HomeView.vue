@@ -1,12 +1,13 @@
 <template>
-{{ gMenu }}
-<div>
-  <HeroSection :msg="hotel.name" :hero_image="hotel.hero_image" />
-	<StaffSection :staffs="staffs" :about="hotel.about" />
-  <RoomSection :rooms="rooms" />
-  <MenuSection  :menus="menus" />
-  <ReviewSection />
-</div>
+<section class="section" v-if="hotel.page===[]">
+  This web page is disabled/not commissioned yet
+</section>
+  <HeroSection :msg="hotel.name" :hero_image="hotel.hero_image" v-if="'home' in hotel.page.title" />
+	<StaffSection :staffs="staffs" :about="hotel.about" v-if="'about' in hotel.page.title"/>
+  <RoomSection :rooms="rooms" v-if="'rooms' in hotel.page.title"/>
+  <MenuSection  :menus="menus" v-if="'menu' in hotel.page.title" />
+  <ReviewSection v-if="'review' in hotel.page.title"/>
+  <ContactSection :address="hotel.address" :email="hotel.email" :phones="hotel.contact" v-if="'contact' in hotel.page.title" />
 </template>
 
 <script>
@@ -16,6 +17,7 @@ import StaffSection from "@/components/StaffSection.vue"
 import RoomSection from "@/components/RoomSection.vue"
 import MenuSection from "@/components/MenuSection.vue"
 import ReviewSection from "@/components/ReviewSection.vue";
+import ContactSection from "@/components/ContactSection.vue";
 
 Array.prototype.groupBy = function(key) {return this.reduce((hash, obj) => {
 if(obj[key] === undefined) return hash;
@@ -25,9 +27,8 @@ return Object.assign(hash, { [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
 
 import axios from "axios";
 export default {
-  //inject: ["globals", "$dayjs"],
   name: 'HomeView',
-  components: { HeroSection, RoomSection, StaffSection, MenuSection, ReviewSection },
+  components: { HeroSection, RoomSection, StaffSection, MenuSection, ReviewSection, ContactSection },
   data(){
   	return {
       hotel: {},
@@ -42,17 +43,9 @@ export default {
         const res = await axios.get('http://127.0.0.1:8000/v1/api/hotel/')
         this.hotel = res.data
       } catch(e){
-        alert(e.response)
+        location.href = "/admin/"
       } 
     },
-      groupMenu(group, item){ 
-        return this.hotel.menu.reduce((a, item) => {
-          const { category } = item;
-          a[category] = a[category] ?? [];
-          a[category].push(item);
-          return a;
-        }, {});
-      }
   },
   computed: {
     rooms(){
@@ -61,17 +54,9 @@ export default {
     staffs(){
       return this.hotel.staff
     },
-    menusCat(){
-      if (this.hotel.menu) 
-          {
-            return new Set(this.hotel.menu.map(x => x.nature))
-          }
-      return []
-    },
     menus(){
       if (this.hotel.menu) {
             return this.hotel.menu.groupBy("nature")
-            //return this.groupMenu(this.hotel.menu, nature)
           }
       return []
     }

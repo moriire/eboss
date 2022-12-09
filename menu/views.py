@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from menu.models import ( MenuSerializer, RoomSerializer, StaffSerializer, Menu, Room, Staff) 
+from menu.models import ( MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact) 
 from hotel.models import Hotel
 
 class MenuView(ModelViewSet):
@@ -18,6 +18,11 @@ class MenuView(ModelViewSet):
             hotel_obj.save()
             return Response(catser.data)
         return Response("something went wrong")
+
+class ContactView(ModelViewSet):
+    queryset = Contact.objects.all().select_related()
+    serializer_class = ContactSerializer
+    lookup_field = "id"
 
 class RoomView(ModelViewSet):
     queryset = Room.objects.all().prefetch_related()

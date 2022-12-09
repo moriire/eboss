@@ -5,7 +5,7 @@ from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 #from staff.views import StaffView
-from menu.views import (MenuView, RoomView, StaffView)
+from menu.views import (MenuView, RoomView, StaffView, ContactView)
 from booking.views import BookingView
 from hotel.views import HotelView
 
@@ -17,7 +17,10 @@ from drf_yasg.views import get_schema_view
 
 from rest_framework.documentation import include_docs_urls
 
-
+admin.site.site_title = "Admin"
+admin.site.index_title = "Rotana Hotels Ltd Web Dashboard"
+admin.site.site_url = "/"
+admin.site.site_header = "Rotana"
 # Swagger documentation setup
 schema_view = get_schema_view(
                         openapi.Info(
@@ -44,6 +47,7 @@ router.register("room", RoomView)
 router.register("menu", MenuView)
 router.register("staff", StaffView)
 router.register("booking", BookingView)
+router.register("contact", ContactView)
 router.register("hotel", HotelView)
 urlpatterns = [
     re_path(r"^v1/api/", include(router.urls)),
