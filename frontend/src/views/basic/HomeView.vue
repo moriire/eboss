@@ -161,7 +161,7 @@ export default {
   methods: {
     async getStaffs(){
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/v1/api/hotel/${this.$route.params.user}`)
+        const res = await axios.get(`/v1/api/hotel/${this.$route.params.user}`)
         this.hotel = res.data
       } catch(e){
       alert("yeah")
@@ -172,7 +172,7 @@ export default {
       try {
         this.form.no_of_adult = parseInt(this.form.no_of_adult);
         this.form.no_of_kids = parseInt(this.form.no_of_kids);
-        const res = await axios.post("http://127.0.0.1:8000/v1/api/booking/", this.form)
+        const res = await axios.post("/v1/api/booking/", this.form)
         alert("success")
       } catch(e){
         alert("failed booking")
