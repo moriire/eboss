@@ -1,8 +1,18 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from menu.models import ( MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact) 
+from menu.models import ( PageSerializer, Page, Review, ReviewSerializer, MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact) 
 from hotel.models import Hotel
+
+class PageView(ModelViewSet):
+    queryset = Page.objects.all().select_related()
+    serializer_class = PageSerializer
+    lookup_field = "id"
+
+class ReviewView(ModelViewSet):
+    queryset = Review.objects.all().select_related()
+    serializer_class = ReviewSerializer
+    lookup_field = "id"
 
 class MenuView(ModelViewSet):
     queryset = Menu.objects.all().prefetch_related()

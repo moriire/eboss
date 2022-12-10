@@ -5,7 +5,7 @@ from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 #from staff.views import StaffView
-from menu.views import (MenuView, RoomView, StaffView, ContactView)
+from menu.views import (MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
 from booking.views import BookingView
 from hotel.views import HotelView
 
@@ -43,11 +43,15 @@ def index(request, **kw):
 
 
 router = DefaultRouter()
+
+
+router.register("page", PageView)
 router.register("room", RoomView)
 router.register("menu", MenuView)
 router.register("staff", StaffView)
 router.register("booking", BookingView)
 router.register("contact", ContactView)
+router.register("review", ReviewView)
 router.register("hotel", HotelView)
 urlpatterns = [
     re_path(r"^v1/api/", include(router.urls)),
@@ -56,9 +60,8 @@ urlpatterns = [
     #re_path('api/auth/signup/', include('dj_rest_auth.registration.urls')),
     path("", index, name="index"),
     path("<str:page>", index, name="index-1"),
-    #path("<str:page1>/<str:page2>", index, name="index-2"),
-    
-    re_path(r'^docs/', include_docs_urls(title='Ekstasee Social Network Backend')),                           
+    path("<str:page1>/<str:page2>", index, name="index-2"),
+    re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'

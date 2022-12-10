@@ -37,7 +37,7 @@ const routes = [
     component: LayoutView,
 //beforeEnter: guardMyroute,
     children: [
-	    { path:'', component: HomeView },
+	    { path:':user', component: HomeView },
 	  ]
   },
 

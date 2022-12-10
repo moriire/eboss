@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import (Page, Menu, Room, Staff, Contact)
+from .models import (Page, Menu, Room, Staff, Contact, Review)
 admin.site.register(Contact)
 admin.site.register(Page)
+admin.site.register(Review)
 
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):

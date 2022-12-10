@@ -6,11 +6,13 @@ from .models import HotelSerializer, Hotel
 class HotelView(ModelViewSet):
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
-    lookup_field = "id"
+    #lookup_field = "email"
 
-    def list(self, request):
-        items = self.get_queryset()
-        catser = HotelSerializer(items, many=True)
+    def retrieve(self, request, pk=None):
+        #print(pk)
+        #email = "@".join((pk, "gmail.com"))
+        items = self.get_queryset().get(user = pk)
+        catser = HotelSerializer(items)
         return Response(
-                catser.data[-1]
+                catser.data
                 )

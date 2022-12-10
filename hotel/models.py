@@ -4,14 +4,17 @@ from rest_framework import serializers#.viewsets import ModelViewSet
 #from staff.models import Staff, StaffSerializer
 from menu.models import (Page, Room, Staff, Menu, Contact, PageSerializer, MenuSerializer, StaffSerializer, RoomSerializer, ContactSerializer)
 from imgutil import thumbnail
+from users.models import CustomUsers
 
 class Hotel(models.Model):
+    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="profile+")
     name = models.CharField(max_length = 50)
-    hero_image = models.ImageField()
-    address = models.TextField()
+    hero_image = models.ImageField(blank=True)
+    address = models.TextField(default="")
+    phone = models.CharField(max_length=11)
     email = models.EmailField()
-    contact = models.ManyToManyField(Contact, related_name="hotel_contact+")
-    about = models.TextField() 
+    contact = models.ManyToManyField(Contact, related_name="hotel_contact+", blank=True)
+    about = models.TextField(default="") 
     room = models.ManyToManyField(Room, blank=True)
     staff = models.ManyToManyField(Staff, blank=True)
     menu = models.ManyToManyField(Menu, blank=True)
@@ -22,10 +25,10 @@ class Hotel(models.Model):
         return self.name
 
     def save(self, *a, **b):
+        super(Hotel, self).save(*a, **b)
         if self.hero_image:
-            super(Hotel, self).save(*a, **b)
             thumbnail(self.hero_image, (1900, 1075))
-
+    
 class HotelSerializer(serializers.ModelSerializer):
     page = PageSerializer(many=True)
     room = RoomSerializer(many=True)
@@ -35,3 +38,4 @@ class HotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hotel
         fields = "__all__"
+        #lookup_field = "email"
