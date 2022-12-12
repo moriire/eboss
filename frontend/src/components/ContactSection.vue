@@ -3,8 +3,8 @@
       <div class="container">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading" data-aos="fade-up">Contact Us</h2>
-              <p data-aos="fade-up">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <h2 class="heading" data-aos="fade-up">{{ header.title }}</h2>
+              <p data-aos="fade-up">{{ header.subtitle }}</p>
             </div>
           </div>
         <div class="row">
@@ -38,6 +38,7 @@ export default {
     address: { type: String, default: "" },
     email: { type: String, default: "" },
     phones: { type: String, default: "" },
+    header: {type: Function, },
   }
 }
 </script>

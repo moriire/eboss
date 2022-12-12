@@ -4,7 +4,7 @@
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading" data-aos="fade-up">People Says</h2>
+              <h2 class="heading" data-aos="fade-up">{{ header.title }}</h2>
             </div>
           </div>
           <div class="row">
@@ -88,7 +88,8 @@ export default {
   name: 'ReviewSection',
   props: {
     msg: { String, default:''},
-    staffs: { Array , default: []}
+    staffs: { Array , default: []},
+    header: {type: Function, },
   },
 }
 </script>

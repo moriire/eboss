@@ -3,8 +3,8 @@
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading" data-aos="fade-up">Rooms &amp; Suites</h2>
-              <p data-aos="fade-up" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <h2 class="heading" data-aos="fade-up">{{ header.title }}</h2>
+              <p data-aos="fade-up" data-aos-delay="100">{{ header.subtitle }}</p>
             </div>
           </div>
           <div class="row justify-content-center text-center mb-5" v-if="rooms.length===0" >
@@ -35,7 +35,8 @@ export default {
   name: 'RoomSection',
   props: {
     msg: { String, default:''},
-    rooms: { Array , default: []}
+    rooms: { Array , default: []},
+    header: {type: Function, },
   },
 }
 </script>

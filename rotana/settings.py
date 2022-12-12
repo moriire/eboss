@@ -37,18 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     "corsheaders",
+    "corsheaders",
     "rest_framework",
-    'users',
-    #"rest_framework.authtoken",
-    #"allauth",
-    #"allauth.account",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
     #"allauth.socialaccount",
-    #"dj_rest_auth",
-    #'dj_rest_auth.registration',
-    #'room',
+    "dj_rest_auth",
+    'dj_rest_auth.registration',
+    'users',
     'booking',
-    #'staff',
     'menu',
     'hotel',
     'coreapi', # Coreapi for coreapi documentation                                    
@@ -157,7 +155,20 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None #"email"
 ACCOUNT_USERNAME_REQUIRED=False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-#REST_USE_JWT = True
-#JWT_AUTH_COOKIE = 'jwt-auth'
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'jwt-auth'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 CORS_ALLOW_ALL_ORIGINS = True
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    )
+}
+
+REST_AUTH_SERIALIZERS = {
+    #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
+    #'TOKEN_SERIALIZER': 'path.to.custom.TokenSerializer',
+    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
+    "USER_DETAILS_SERIALIZER":'users.models.UserDetailsSerializer',
+}
+

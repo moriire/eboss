@@ -1,7 +1,7 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container">
-        <a class="navbar-brand" href="/"><span class="text-danger">R</span>otana</a>
+        <a class="navbar-brand" :href="`/${$route.params.user}`"><span class="text-danger">R</span>otana</a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
@@ -19,12 +19,12 @@
     </nav>
     <!-- END nav -->
 
-<HeroSection :msg="hotel.name" :hero_image="hotel.hero_image" v-if="pages.includes('home')" />
-	<StaffSection :staffs="staffs" :about="hotel.about" v-if="pages.includes('staff')" />
-  <RoomSection :rooms="rooms" v-if="pages.includes('room')" />
-  <MenuSection  :menus="menus" v-if="pages.includes('menu')"/>
-  <ReviewSection v-if="pages.includes('review')" />
-  <ContactSection :address="hotel.address" :email="hotel.email" :phones="hotel.contact" v-if="pages.includes('contact')" />
+  <HeroSection :msg="hotel.name" :hero_image="hotel.hero_image" v-if="pages.includes('home')" :header="pageHeaders('home')" />
+	<StaffSection :staffs="staffs" :about="hotel.about" v-if="pages.includes('staff')" :header="pageHeaders('staff')" />
+  <RoomSection :rooms="rooms" v-if="pages.includes('room')" :header="pageHeaders('room')" />
+  <MenuSection  :menus="menus" v-if="pages.includes('menu')" :header="pageHeaders('menu')" />
+  <ReviewSection v-if="pages.includes('review')" :header="pageHeaders('review')" />
+  <ContactSection :address="hotel.address" :email="hotel.email" :phones="hotel.contact" v-if="pages.includes('contact')" :header="pageHeaders('contact')" />
   <section class="section bg-image overlay" style="background-image: url(/static/src/dist/images/hero_4.jpg);">
         <div class="container" >
           <div class="row align-items-center">
@@ -108,7 +108,7 @@
                     <div class="row mb-4">
                       <div class="col-md-12 form-group">
                         <label class="text-black font-weight-bold" for="message">Notes</label>
-                        <textarea name="message" id="message" class="form-control " cols="30" rows="8" v-model="form.note"></textarea>
+                        <textarea name="message" id="message" class="form-control " cols="30" rows="5" v-model="form.note"></textarea>
                       </div>
                     </div>
                     <div class="row">
@@ -159,6 +159,12 @@ export default {
     this.getStaffs()
   },
   methods: {
+    pageHeaders(x){
+      if (this.hotel.page){
+        return this.hotel.page.filter(y=> y.title === x)
+      }
+      return ""
+    },
     async getStaffs(){
       try {
         const res = await axios.get(`/v1/api/hotel/${this.$route.params.user}`)
@@ -172,7 +178,7 @@ export default {
       try {
         this.form.no_of_adult = parseInt(this.form.no_of_adult);
         this.form.no_of_kids = parseInt(this.form.no_of_kids);
-        const res = await axios.post("/v1/api/booking/", this.form)
+        const res = await axios.post("http://127.0.0.1:8000/v1/api/booking/", this.form)
         alert("success")
       } catch(e){
         alert("failed booking")

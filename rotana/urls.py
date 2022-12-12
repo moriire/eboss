@@ -41,6 +41,8 @@ from django.shortcuts import render
 def index(request, **kw):
     return render(request, "index.html", {})
 
+def homepage(request, **kw):
+    return render(request, "homepage.html", {})
 
 router = DefaultRouter()
 
@@ -55,12 +57,13 @@ router.register("review", ReviewView)
 router.register("hotel", HotelView)
 urlpatterns = [
     re_path(r"^v1/api/", include(router.urls)),
-    #re_path('api/auth/', include('dj_rest_auth.urls')),
+    re_path('v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),
-    #re_path('api/auth/signup/', include('dj_rest_auth.registration.urls')),
-    path("", index, name="index"),
-    path("<str:page>", index, name="index-1"),
-    path("<str:page1>/<str:page2>", index, name="index-2"),
+    re_path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
+    re_path("", homepage, name="home"),
+    re_path("account/<str:page>", homepage, name="index-1"),
+    path("<str:page1>", index, name="index-2"),
+    re_path("setup/<str:page2>", homepage, name="index-3"),
     re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),

@@ -4,6 +4,7 @@ admin.site.register(Contact)
 admin.site.register(Page)
 admin.site.register(Review)
 
+
 @admin.register(Menu)
 class MenuAdmin(admin.ModelAdmin):
     list_display = ("name", "price")

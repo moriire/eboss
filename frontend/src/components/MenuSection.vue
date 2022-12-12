@@ -3,8 +3,8 @@
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
-              <p class="text-white" data-aos="fade" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+              <h2 class="heading text-white" data-aos="fade">{{ header.title }}</h2>
+              <p class="text-white" data-aos="fade" data-aos-delay="100">{{ header.subtitle }}</p>
             </div>
           </div>
           <div class="food-menu-tabs" data-aos="fade">
@@ -42,7 +42,8 @@ export default {
   name: 'MenuSection',
   props: {
     //msg: { String, default:''},
-    menus: { Array , default: []}
+    menus: { Array , default: []},
+    header: {type: Function, },
   },
 }
 </script>

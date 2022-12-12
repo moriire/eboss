@@ -7,7 +7,7 @@ class Review(models.Model):
     CHOICES = (
         (i, i) for i in range(-5,6)
         )
-    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
     rate = models.CharField(max_length=2, choices=CHOICES )
     email = models.EmailField()
     full_name = models.CharField(max_length=50)
@@ -35,8 +35,8 @@ class Page(models.Model):
         ("menu", "menu"),
         ("review", "review"),
     )
-    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE,
-     related_name="hotel+")
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
+     related_name="page_user+")
     title = models.CharField(max_length=15, choices=CHOICES )
     subtitle = models.CharField(max_length=128)
     enable = models.BooleanField(default=False)

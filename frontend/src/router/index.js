@@ -1,10 +1,10 @@
 /* eslint-disable */
+import IndexView from "../views/IndexView";
 import { createRouter, createWebHistory } from 'vue-router'
 import LayoutView from '../views/LayoutView.vue'
-//import { LoginView, RegisterView, AccountView,  ResetPasswordView }  from '../views/account'
-
+import { LoginView, RegisterView, AccountLayout, } from '../views/account'
 import { HomeView }  from '../views/basic'
-
+import { RegisterClientView, ListClientView, EditClientView, AttendanceView, UserView, ClientLayout} from '../views/client'
 //import { CreateContactView, EditUserInfoView, CreateImgView, TargetView, StartSavingView, SingleSavingsView }  from '../views/forms'
 import alertify from "alertifyjs"
 
@@ -32,13 +32,45 @@ if(isLoggedIn) {
 }
 const routes = [
   {
-    path: '/',
+    path: '/account',
+    name: 'account',
+    component: AccountLayout,
+    children: [
+      { path: "login", component: LoginView},
+      { path: "register", component: RegisterView},
+    ]
+  },
+  {
+    path: '/setup',
+    name: 'client',
+    component: ClientLayout,
+    beforeEnter: guardMyroute,
+    children: [
+      { path: ":user", component: RegisterClientView},
+      { path: "list", component: ListClientView},
+      { path: "edit/:id", component: EditClientView},
+      //{ path: "dashboard", component: DashboardView},
+      { path: "attendance", component: AttendanceView},
+      { path: "user/:id", component: UserView},
+    ]
+  },
+  
+  {
+    path: '/user',
     name: 'Basic',
     component: LayoutView,
 //beforeEnter: guardMyroute,
     children: [
-	    { path:':user', component: HomeView },
-	  ]
+      { path:':user', component: HomeView },
+      //{ path:'setup/:user', component: IndexView },
+    ]
+  },
+
+  {
+    path: '/',
+    name: 'Basic',
+    component: IndexView,
+//beforeEnter: guardMyroute,
   },
 
  {
