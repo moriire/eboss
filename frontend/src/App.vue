@@ -1,6 +1,6 @@
 <script>
 //import "alertifyjs/build/css/alertify.min.css";
-import global from "@/stores/globals"
+import globals from "@/stores/globals"
 import alertify from "alertifyjs";
 export default {
   name: "App",
@@ -15,11 +15,11 @@ export default {
   provide() {
    return { 
    alertify: this.alertify,
-   global: global,
+   globals: globals,
    }
    },
    created(){
-   	//this.globals.getProfile()
+   	this.globals.getProfile()
    }
 }
 </script>

@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LayoutView from '../views/LayoutView.vue'
 import { LoginView, RegisterView, AccountLayout, } from '../views/account'
 import { HomeView }  from '../views/basic'
-import { RegisterClientView, ListClientView, EditClientView, AttendanceView, UserView, ClientLayout} from '../views/client'
+//import { RegisterClientView, ListClientView, EditClientView, AttendanceView, UserView, ClientLayout} from '../views/client'
 //import { CreateContactView, EditUserInfoView, CreateImgView, TargetView, StartSavingView, SingleSavingsView }  from '../views/forms'
 import alertify from "alertifyjs"
 
@@ -39,7 +39,7 @@ const routes = [
       { path: "login", component: LoginView},
       { path: "register", component: RegisterView},
     ]
-  },
+  },/*
   {
     path: '/setup',
     name: 'client',
@@ -54,7 +54,7 @@ const routes = [
       { path: "user/:id", component: UserView},
     ]
   },
-  
+  */
   {
     path: '/user',
     name: 'Basic',
@@ -68,7 +68,7 @@ const routes = [
 
   {
     path: '/',
-    name: 'Basic',
+    name: 'Home',
     component: IndexView,
 //beforeEnter: guardMyroute,
   },
