@@ -1,6 +1,6 @@
 <script>
 //import "alertifyjs/build/css/alertify.min.css";
-import axios from "axios";
+import global from "@/stores/globals"
 import alertify from "alertifyjs";
 export default {
   name: "App",
@@ -15,6 +15,7 @@ export default {
   provide() {
    return { 
    alertify: this.alertify,
+   global: global,
    }
    },
    created(){
