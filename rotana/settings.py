@@ -24,10 +24,10 @@ SECRET_KEY = 'django-insecure-0ij&e^^+v)u%%5y&-_-l$rc+-*&+_x1nj9zhic^h5qcg)ojqw)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+import os
+ALLOWED_HOSTS = ["*", "pythonanywhere.com"]
 
-ALLOWED_HOSTS = ["*"]
-
-REST_AUTH_TOKEN_MODEL = None
+#REST_AUTH_TOKEN_MODEL = None
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'booking',
     'menu',
     'hotel',
-    'coreapi', # Coreapi for coreapi documentation                                    
+    'coreapi', # Coreapi for coreapi documentation
     'drf_yasg', # drf_yasg fro Swagger documentatio
 ]
 
@@ -130,17 +130,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-#STATIC_ROOT = BASE_DIR/"static/"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,  "static/")
 
 MEDIA_URL= '/media/'
-MEDIA_ROOT = BASE_DIR /'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [ BASE_DIR / 'static']
+STATICFILES_DIRS = [ BASE_DIR / 'static/', '/home/rotana/Rotana-hotel-CMS/static/']
 #REST_FRAMEWORK = {                           'DEFAULT_AUTHENTICATION_CLASSES': ( 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',),                                     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'           }
 #REST_AUTH_SERIALIZERS = {
     #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
