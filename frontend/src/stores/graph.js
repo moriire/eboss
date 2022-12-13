@@ -1,8 +1,7 @@
 //<script>
 import axios from "axios";
 import { reactive } from "vue";
-const BASE = process.env.BASE_URL.startsWith("https://present.pythonanywhere")? process.env.BASE_URL: process.env.BASE_URL.split("/")[0]
-
+const BASE = "https://rotana.pythonanywhere.com"
 //const config = { headers: { 'Authorization' :  `Bearer ${state.user.access_token}` }}
 const byGrades = reactive({data: {}});
 const byGenders = reactive({data: {}});

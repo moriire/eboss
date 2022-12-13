@@ -4,7 +4,7 @@ import axios from "axios";
 import { reactive, computed, readonly } from "vue";
 import router from "@/router";
 //const BASE = "http://127.0.0.1:8000"
-const BASE = "https://rotana.pythonanywhere.com/"
+const BASE = "https://rotana.pythonanywhere.com"
 
 import alertify from "alertifyjs"
 

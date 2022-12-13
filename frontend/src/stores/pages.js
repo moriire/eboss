@@ -3,7 +3,7 @@ import axios from "axios";
 import alertify from "alertifyjs";
 import { reactive, ref, readonly } from "vue";
 import router from "@/router";
-const BASE = process.env.BASE_URL.startsWith("https://present.pythonanywhere")? process.env.BASE_URL: process.env.BASE_URL.split("/")[0]
+const BASE = "https://present.pythonanywhere"
 
 //const config = { headers: { 'Authorization' :  `Bearer ${state.user.access_token}` }}
 const clients = reactive({data: []});
