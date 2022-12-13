@@ -3,7 +3,7 @@ import axios from "axios";
 import alertify from "alertifyjs";
 import { reactive, ref, readonly } from "vue";
 import router from "@/router";
-const BASE = "https://present.pythonanywhere"
+const BASE = "https://rotana.pythonanywhere.com"
 
 //const config = { headers: { 'Authorization' :  `Bearer ${state.user.access_token}` }}
 const clients = reactive({data: []});
