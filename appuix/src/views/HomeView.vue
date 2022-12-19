@@ -21,21 +21,25 @@ export default {
     return {
       form: {user: this.$route.params.user_id},
       hotel: {},
+      rooms: [],
+      leads: [],
+      menus: [],
+      contacts: [],
+      pages: [],
+      hero_image: "",
+
     }
   },
   created() {
     this.getStaffs()
   },
   methods: {
-    mapLink(x){
-      return x.split(" ").join("%20")
-    },
     chTitle(title){
-      document.title = `${title} | ${this.hotel.user.business_name}`
+      document.title = `${title} | ${this.hotel.business_name}`
     },
     pageHeaders(x){
-      if (this.hotel.page.length){
-        return this.hotel.page.filter(y => y.title==x)[0]
+      if (this.pages.length){
+        return this.pages.filter(y => y.title==x)[0]
       } else {
         return ""
       }
@@ -43,7 +47,14 @@ export default {
     async getStaffs(){
       try {
         const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
-        this.hotel = res.data[0]
+        this.hotel = res.data[0].user
+        this.rooms = res.data[0].room
+        this.pages =  res.data[0].page
+        this.leads = res.data[0].staff
+        this.menus = res.data[0].menu
+        this.contacts = res.data[0].contact
+        this.hero_image = res.data[0].hero_image
+
       } catch(e){
       alert("Welcome")
         //location.href = "/admin/"
@@ -62,20 +73,11 @@ export default {
   },
   computed: {
     pagetitle(){
-      if (this.hotel.page) {
-            document.title = `Welcome to ${this.hotel.user.business_name}`
+      if (this.pages) {
+            document.title = `Welcome to ${this.hotel.business_name}`
             return this.pages.map(x=>x.title)
           }
       return []
-    },
-    pages(){
-      return this.hotel.page
-    },
-    rooms(){
-      return this.hotel.room
-    },
-    staffs(){
-      return this.hotel.staff
     },
     menus(){
       if (this.hotel.menu) {
@@ -89,8 +91,8 @@ export default {
 <template>
 
   <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
-      <div class="container">
-        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">{{ `${hotel.user.business_name.split(' ')[0]}` }} </span>{{ `${hotel.user.business_name.split(' ')[1]}` }}</a>
+      <div class="container" v-if="hotel">
+        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">Logo </span>{{ hotel.business_name }}</a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
@@ -108,12 +110,12 @@ export default {
       </div>
     </nav>
     <!-- END nav -->
-  <HeroSection :msg="hotel.user.business_name" :hero_image="hotel.hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
+  <HeroSection :msg="hotel.business_name" :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('staff')" :header="pageHeaders('staff')" />
   <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
   <MenuSection  :menus="menus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
-  <ContactSection :gmap="hotel.user.gmap" :address="hotel.user.address" :email="hotel.user.email" :phones="hotel.contact" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
+  <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
   <section class="section bg-image overlay" style="background-image: url(/static/src/dist/images/hero_4.jpg);">
         <div class="container" >
           <div class="row align-items-center">
