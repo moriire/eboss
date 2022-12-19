@@ -9,6 +9,25 @@ from menu.views import (MenuView, RoomView, StaffView, ContactView, PageView, Re
 from booking.views import BookingView
 from hotel.views import HotelView
 
+from django.shortcuts import render
+
+def apphome(request, page1):
+    return render(request, "app/index.html", {})
+
+def homepage(request, **kw):
+    return render(request, "homepage.html", {})
+
+router = DefaultRouter()
+
+
+router.register("page", PageView)
+router.register("room", RoomView)
+router.register("menu", MenuView)
+router.register("staff", StaffView)
+router.register("booking", BookingView)
+router.register("contact", ContactView)
+router.register("review", ReviewView)
+router.register("hotel", HotelView)
 
 
 from drf_yasg import openapi
@@ -36,34 +55,17 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
-from django.shortcuts import render
 
-def index(request, **kw):
-    return render(request, "index.html", {})
-
-def homepage(request, **kw):
-    return render(request, "homepage.html", {})
-
-router = DefaultRouter()
-
-
-router.register("page", PageView)
-router.register("room", RoomView)
-router.register("menu", MenuView)
-router.register("staff", StaffView)
-router.register("booking", BookingView)
-router.register("contact", ContactView)
-router.register("review", ReviewView)
-router.register("hotel", HotelView)
 urlpatterns = [
-    re_path(r"^v1/api/", include(router.urls)),
-    re_path('v1/api/auth/', include('dj_rest_auth.urls')),
+    path('hotel/user/<str:page1>', apphome, name="app_index"),
+    re_path(r'^v1/api/', include(router.urls)),
+    re_path(r'^v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),
-    re_path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
-    re_path("", homepage, name="home"),
-    re_path("account/<str:page>", homepage, name="index-1"),
-    path("<str:page1>", index, name="index-2"),
-    re_path("setup/<str:page2>", homepage, name="index-3"),
+    re_path(r'^v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
+    path("", homepage, name="home"),
+    path('account/<str:page>', homepage, name="index-1"),
+    re_path(r'^dashboard', homepage, name="index-3"),
+    re_path(r'^setup', homepage, name="index-4"),
     re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),

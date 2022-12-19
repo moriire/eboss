@@ -11,7 +11,7 @@ class Review(models.Model):
     rate = models.CharField(max_length=2, choices=CHOICES )
     email = models.EmailField()
     full_name = models.CharField(max_length=50)
-    img = models.ImageField()
+    img = models.ImageField(upload_to="review", blank=True)
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -59,7 +59,7 @@ class Menu(models.Model):
         ("drink", "drink"),
         ("food", "food"),
     )
-    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE,
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="hotel+")
     name = models.CharField(max_length=50)
     nature = models.CharField(max_length=15, choices=CHOICES )
@@ -79,7 +79,7 @@ class Contact(models.Model):
         ("phone", "phone"),
         ("social", "social"),
     )
-    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE,
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="hotel+")
     nature = models.CharField(max_length=15, choices=CHOICES )
     name = models.CharField(max_length=15)
@@ -100,12 +100,12 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class Room(models.Model):
-    user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE,
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="room")
     title = models.CharField(max_length=30)
     duration = models.CharField(max_length=30)
     price = models.FloatField(max_length=30, null=True, blank=True )
-    img = models.ImageField(upload_to="rooms/")
+    img = models.ImageField(upload_to="rooms/", blank=True)
     note = models.TextField(blank = True)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -120,6 +120,8 @@ class Room(models.Model):
         if self.img:
             super(Room, self).save(*a, **b)
             thumbnail(self.img, (800, 530))
+        else:
+            super(Room, self).save(*a, **b)
 
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:

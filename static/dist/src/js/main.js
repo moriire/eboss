@@ -292,6 +292,4 @@
     });
   };
   scrollWindow();
-
-
 })(jQuery);
