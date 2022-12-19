@@ -133,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR,  "static/")
+STATIC_ROOT = os.path.join(BASE_DIR,  "static/")
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -142,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [ BASE_DIR / 'static/', ]
+#STATICFILES_DIRS = [ BASE_DIR / 'static/', ]
 #REST_FRAMEWORK = {                           'DEFAULT_AUTHENTICATION_CLASSES': ( 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',),                                     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'           }
 #REST_AUTH_SERIALIZERS = {
     #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',

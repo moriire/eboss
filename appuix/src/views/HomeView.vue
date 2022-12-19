@@ -42,7 +42,7 @@ export default {
     },
     async getStaffs(){
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/v1/api/hotel/?user=${this.$route.params.user_id}`)
+        const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
         this.hotel = res.data[0]
       } catch(e){
       alert("Welcome")
@@ -53,7 +53,7 @@ export default {
       try {
         this.form.no_of_adult = parseInt(this.form.no_of_adult);
         this.form.no_of_kids = parseInt(this.form.no_of_kids);
-        const res = await axios.post("http://127.0.0.1:8000/v1/api/booking/", this.form)
+        const res = await axios.post(`${location.origin}/v1/api/booking/`, this.form)
         alert("success")
       } catch(e){
         alert("failed booking")
