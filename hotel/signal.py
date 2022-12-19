@@ -9,18 +9,17 @@ from .models import Hotel
 def create_hotel_profile(sender, instance, created, **kwargs):
     if created:
         Hotel.objects.create(user = instance, 
-                            name=instance.business_name, 
-                            email=instance.email, 
-                            phone=instance.phone, 
-                            address="",
                             about="", 
                             )
-        Page.objects.create(
+        pp = ("home", "about", "review", "contact", "menu")
+        for p in pp:
+            Page.objects.create(
                             user = instance,
-                            title="home", 
+                            title=p, 
                             subtitle="Welcoome to my new page", 
                             enable=True
                             )
+        print("created", pp)
 
 @receiver(post_save, sender = Page)
 def create_hotel_page(sender, instance, created, **kwargs):

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0ij&e^^+v)u%%5y&-_-l$rc+-*&+_x1nj9zhic^h5qcg)ojqw)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not True
 import os
-ALLOWED_HOSTS = ["*", "pythonanywhere.com"]
+ALLOWED_HOSTS = ["*", "pythonanywhere.com", "rotana.pythonanywhere.com"]
 
 #REST_AUTH_TOKEN_MODEL = None
 # Application definition
@@ -133,7 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,  "static/")
+#STATIC_ROOT = os.path.join(BASE_DIR,  "static/")
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -142,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#STATICFILES_DIRS = [ BASE_DIR / 'static/', ]
+STATICFILES_DIRS = [ os.path.join(BASE_DIR / 'static/'), ]
 #REST_FRAMEWORK = {                           'DEFAULT_AUTHENTICATION_CLASSES': ( 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',),                                     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'           }
 #REST_AUTH_SERIALIZERS = {
     #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
