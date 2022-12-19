@@ -151,7 +151,7 @@ export default {
             </nav>
             <!-- Navbar End -->
 
-                    <router-view />
+                    <router-view> </router-view>
 
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
