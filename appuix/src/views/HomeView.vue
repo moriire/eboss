@@ -61,12 +61,15 @@ export default {
     }
   },
   computed: {
-    pages(){
+    pagetitle(){
       if (this.hotel.page) {
             document.title = `Welcome to ${this.hotel.user.business_name}`
-            return this.hotel.page.map(x=>x.title)
+            return this.pages.map(x=>x.title)
           }
       return []
+    },
+    pages(){
+      return this.hotel.page
     },
     rooms(){
       return this.hotel.room
@@ -87,7 +90,7 @@ export default {
 
   <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container">
-        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">R</span>otana</a>
+        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">{{ `${hotel.user.business_name.split(' ')[0]}` }} </span>{{ `${hotel.user.business_name.split(' ')[1]}` }}</a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
@@ -97,7 +100,7 @@ export default {
 
         <div class="collapse navbar-collapse" id="templateux-navbar-nav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item" v-for="page in pages" v-bind:key="page">
+            <li class="nav-item" v-for="page in pagetitle" v-bind:key="page">
             <a class="nav-link text-capitalize" :href="`#section-${page}`" @click="chTitle(`${page}`)" >{{ page }}</a></li>
             <li class="nav-item cta-btn ml-xl-2 ml-lg-2 ml-md-0 ml-sm-0 ml-0"><a class="nav-link" href="#" data-toggle="modal" data-target="#reservation-form" ><span class="pb_rounded-4 px-4 rounded">Booking & Reservation</span></a></li>
           </ul>
@@ -105,12 +108,12 @@ export default {
       </div>
     </nav>
     <!-- END nav -->
-  <HeroSection :msg="hotel.user.business_name" :hero_image="hotel.hero_image" v-if="pages.includes('home')" :header="pageHeaders('home')" />
-  <StaffSection :staffs="staffs" :about="hotel.about" v-if="pages.includes('staff')" :header="pageHeaders('staff')" />
-  <RoomSection :rooms="rooms" v-if="pages.includes('room')" :header="pageHeaders('room')" />
-  <MenuSection  :menus="menus" v-if="pages.includes('menu')" :header="pageHeaders('menu')" />
-  <ReviewSection v-if="pages.includes('review')" :header="pageHeaders('review')" />
-  <ContactSection :gmap="hotel.user.gmap" :address="hotel.user.address" :email="hotel.user.email" :phones="hotel.contact" v-if="pages.includes('contact')" :header="pageHeaders('contact')" />
+  <HeroSection :msg="hotel.user.business_name" :hero_image="hotel.hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
+  <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('staff')" :header="pageHeaders('staff')" />
+  <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
+  <MenuSection  :menus="menus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
+  <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
+  <ContactSection :gmap="hotel.user.gmap" :address="hotel.user.address" :email="hotel.user.email" :phones="hotel.contact" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
   <section class="section bg-image overlay" style="background-image: url(/static/src/dist/images/hero_4.jpg);">
         <div class="container" >
           <div class="row align-items-center">

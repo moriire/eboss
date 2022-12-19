@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0ij&e^^+v)u%%5y&-_-l$rc+-*&+_x1nj9zhic^h5qcg)ojqw)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not True
+DEBUG = True
 import os
 ALLOWED_HOSTS = ["*", "pythonanywhere.com", "rotana.pythonanywhere.com"]
 
@@ -142,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR / 'static/'), ]
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static/'), ]
 #REST_FRAMEWORK = {                           'DEFAULT_AUTHENTICATION_CLASSES': ( 'dj_rest_auth.jwt_auth.JWTCookieAuthentication',),                                     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'           }
 #REST_AUTH_SERIALIZERS = {
     #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
