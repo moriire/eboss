@@ -2,7 +2,7 @@ from users.models import CustomUsers
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from menu.models import (Menu, Staff, Room, Contact, Page, Review)
+from menu.models import (Menu, Staff, Room, Contact, Page, Review, About)
 from .models import Hotel
 
 @receiver(post_save, sender = CustomUsers)
@@ -26,6 +26,13 @@ def create_hotel_page(sender, instance, created, **kwargs):
     if created:
         h = Hotel.objects.get(user = instance.user)
         h.page.add(instance.id)
+
+@receiver(post_save, sender = About)
+def create_hotel_about(sender, instance, created, **kwargs):
+    if created:
+        h = Hotel.objects.get(user = instance.user)
+        h.about.add(instance.id)
+
 
 @receiver(post_save, sender=Menu)
 def create_hotel_menu(sender, instance, created, **kwargs):

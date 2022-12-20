@@ -15,7 +15,7 @@
         </a-->
   </section>
 
-      <section class="section bg-light pb-0"  >
+      <!--section class="section bg-light pb-0"  >
         <div class="container">
          
           <div class="row check-availabilty" id="next">
@@ -75,7 +75,7 @@
 
           </div>
         </div>
-      </section>
+      </section-->
 
 </template>
 

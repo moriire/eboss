@@ -1,6 +1,7 @@
 <script>
 /* eslint-disable */
 import HeroSection from "@/components/HeroSection.vue"
+import AboutSection from "@/components/AboutSection.vue"
 import StaffSection from "@/components/StaffSection.vue"
 import RoomSection from "@/components/RoomSection.vue"
 import MenuSection from "@/components/MenuSection.vue"
@@ -16,7 +17,7 @@ return Object.assign(hash, { [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
 import axios from "axios";
 export default {
   name: 'HomeView',
-  components: { HeroSection, RoomSection, StaffSection, MenuSection, ReviewSection, ContactSection },
+  components: { HeroSection, AboutSection, RoomSection, StaffSection, MenuSection, ReviewSection, ContactSection },
   data(){
     return {
       form: {user: this.$route.params.user_id},
@@ -48,6 +49,7 @@ export default {
       try {
         const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
         this.hotel = res.data[0].user
+        this.about = res.data[0].about
         this.rooms = res.data[0].room
         this.pages =  res.data[0].page
         this.leads = res.data[0].staff
@@ -114,6 +116,7 @@ export default {
   <HeroSection :msg="hotel.business_name" :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('staff')" :header="pageHeaders('staff')" />
   <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
+  <AboutSection :about="about.body" :image="about.thumb" v-if="pagetitle.includes('about')" :header="pageHeaders('about')" />
   <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
   <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />

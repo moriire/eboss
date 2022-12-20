@@ -54,6 +54,33 @@ class PageSerializer(serializers.ModelSerializer):
         model = Page
         fields = "__all__"
 
+class About(models.Model):
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
+     related_name="page_user+")
+    body = models.TextField(max_length=256)
+    thumb = models.ImageField(blank=True, upload_to="about")
+
+    def save(self, commit=True, *a, **b):
+        #if commit:
+        if self.thumb:
+            super(Hotel, self).save(*a, **b)
+            thumbnail(self.thumb, 1900, 1257)
+        else:
+            super(Hotel, self).save(*a, **b)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "About Page"
+        verbose_name_plural = "About Pages"
+
+class AboutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = About
+        fields = "__all__"
+
+
 class Menu(models.Model):
     CHOICES = (
         ("drink", "drink"),
@@ -119,7 +146,7 @@ class Room(models.Model):
     def save(self, *a, **b):
         if self.img:
             super(Room, self).save(*a, **b)
-            thumbnail(self.img, (800, 530))
+            thumbnail(self.img, 800, 530)
         else:
             super(Room, self).save(*a, **b)
 

@@ -1,20 +1,4 @@
 <template>
-<section class="py-5 bg-light" id="section-about">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 col-lg-7 ml-auto order-lg-2 position-relative mb-5" data-aos="fade-up">
-              <img src="a.png" alt="Image" class="img-fluid rounded" />
-            </div>
-            <div class="col-md-12 col-lg-4 order-lg-1" data-aos="fade-up">
-              <h3 class="heading mb-4">About Us</h3>
-              <p class="mb-5">{{ about }}.</p>
-              <p><a href="#"  data-fancybox class="btn btn-primary text-white py-2 mr-3 text-uppercase letter-spacing-1">Watch the video</a></p>
-            </div>
-            
-          </div>
-        </div>
-    </section>
-
     <div class="container section" id="section-team">
 
       <div class="row justify-content-center text-center mb-5">
@@ -60,7 +44,6 @@ export default {
   name: 'StaffSection',
   props: {
     msg: { String, default:''},
-    about: { String, default:''},
     staffs: { Array , default: []}
   },
 }
