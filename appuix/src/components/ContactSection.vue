@@ -37,8 +37,8 @@ export default {
     hero_image: { type: String, default: "" },
     address: { type: String, default: "" },
     email: { type: String, default: "" },
-    phones: { type: Function, default: Function },
-    header: {type: Function, },
+    phones: { type: Array, },
+    header: {type: Object, },
     gmap: { type: String, default: "" },
   }
 }

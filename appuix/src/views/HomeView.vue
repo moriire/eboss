@@ -30,7 +30,7 @@ export default {
 
     }
   },
-  created() {
+  mounted() {
     this.getStaffs()
   },
   methods: {
@@ -69,7 +69,8 @@ export default {
       } catch(e){
         alert("failed booking")
       }
-    }
+    },
+    
   },
   computed: {
     pagetitle(){
@@ -79,9 +80,9 @@ export default {
           }
       return []
     },
-    menus(){
-      if (this.hotel.menu) {
-            return this.hotel.menu.groupBy("nature")
+    gmenus(){
+      if (this.menus) {
+            return this.menus.groupBy("nature")
           }
       return []
     }
@@ -113,10 +114,10 @@ export default {
   <HeroSection :msg="hotel.business_name" :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('staff')" :header="pageHeaders('staff')" />
   <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
-  <MenuSection  :menus="menus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
+  <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
   <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
-  <section class="section bg-image overlay" style="background-image: url(/static/src/dist/images/hero_4.jpg);">
+  <section class="section bg-image overlay" style="background-image: url(null);">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
