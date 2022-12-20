@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     chTitle(title){
-      document.title = `${title} | ${this.hotel.business_name}`
+      document.title = `${title.toUpperCase()} | ${this.hotel.business_name}`
     },
     pageHeaders(x){
       if (this.pages.length){
