@@ -175,6 +175,8 @@ export default {
     </div>
 </template>
 <style src="../public/bubbles/css/style.css"></style>
+<style src="../public/bubbles/lib/fontawesome/css/all.min.css"></style>
+<style src="../public/bubbles/lib/bootstrap-icons/bootstrap-icons.css"></style>
 <style src="../public/bubbles/css/bootstrap.min.css" ></style>
 <style src="../public/bubbles/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" ></style>
 <style src="../public/bubbles/lib/owlcarousel/assets/owl.carousel.min.css" ></style>
