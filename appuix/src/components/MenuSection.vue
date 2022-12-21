@@ -1,5 +1,5 @@
 <template>
-<section class="section bg-image overlay" style="background-image: url('/static/dist/src/images/hero_3.jpg');" id="section-menu">
+<section class="section bg-image overlay" :style="`background-image: url(${header.background});`" id="section-menu">
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">

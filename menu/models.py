@@ -40,8 +40,17 @@ class Page(models.Model):
      related_name="page_user+")
     title = models.CharField(max_length=15, choices=CHOICES )
     subtitle = models.CharField(max_length=128)
+    background = models.ImageField(blank=True, upload_to="background")
     enable = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def save(self, commit=True, *a, **b):
+        #if commit:
+        if self.background:
+            super(Page, self).save(*a, **b)
+            thumbnail(self.background, 1900, 2850)
+        else:
+            super(Page, self).save(*a, **b)
 
     def __str__(self):
         return self.title
