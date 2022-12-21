@@ -63,13 +63,13 @@ class About(models.Model):
     def save(self, commit=True, *a, **b):
         #if commit:
         if self.thumb:
-            super(Hotel, self).save(*a, **b)
+            super(About, self).save(*a, **b)
             thumbnail(self.thumb, 1900, 1257)
         else:
-            super(Hotel, self).save(*a, **b)
+            super(About, self).save(*a, **b)
 
     def __str__(self):
-        return self.title
+        return self.user.business_name
 
     class Meta:
         verbose_name = "About Page"

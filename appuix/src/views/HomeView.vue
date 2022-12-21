@@ -22,6 +22,7 @@ export default {
     return {
       form: {user: this.$route.params.user_id},
       hotel: {},
+      about: {},
       rooms: [],
       leads: [],
       menus: [],
