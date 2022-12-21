@@ -33,8 +33,8 @@
 export default {
   name: 'ReviewSection',
   props: {
-    reviews: { type: Array , default: []},
-    header: { type: Object, default: {} },
+    reviews: { type: Array },
+    header: { type: Object },
   },
 }
 </script>

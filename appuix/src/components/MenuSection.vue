@@ -42,7 +42,7 @@ export default {
   name: 'MenuSection',
   props: {
     menus: { Array , default: []},
-    header: {type: Object, default: {}},
+    header: { type: Object },
   },
 }
 </script>

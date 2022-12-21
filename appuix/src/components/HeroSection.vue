@@ -85,7 +85,7 @@ export default {
   props: {
     msg: { type: String, default: "" },
     hero_image: { type: String, default: "" },
-    header: {type: Object, default:{} }
+    header: { type: Object }
   },
 }
 </script>

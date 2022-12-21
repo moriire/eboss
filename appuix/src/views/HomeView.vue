@@ -21,6 +21,7 @@ export default {
   data(){
     return {
       form: {user: this.$route.params.user_id},
+      fresh: new Date().getFullYear(),
       hotel: {},
       about: {},
       rooms: [],
@@ -135,6 +136,25 @@ export default {
           </div>
         </div>
       </section>
+      <footer class=" footer-section">
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <p class="text-center m-2 p-2">
+              &copy; {{ fresh }}| <a href="https://www.acsolotltd.ml" target="_blank" >Acsolot Integrated Services</a>
+            </p>
+          </div>
+          <div class="row justify-content-center align-items-center">
+            <p class="text-center social m-1 p-1">
+              <a href="https://www.instagram.com/AgesXpat"><span class="fa fa-instagram"></span></a>
+              <a href="https://www.facebook.com/AgesXpat"><span class="fa fa-facebook"></span></a>
+              <a href="https://www.linkedin.com/in/ibmabdulsalam/"><span class="fa fa-linkedin"></span></a>
+              <a href="tel:+2348100482341"><span class="fa fa-phone"></span></a>
+            </p>
+          </div>
+        </div>
+      </footer>
+
+
       <!-- Modal -->
       <div class="modal fade " id="reservation-form" tabindex="-1" role="dialog" aria-labelledby="reservationFormTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
