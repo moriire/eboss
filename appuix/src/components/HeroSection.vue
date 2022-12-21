@@ -3,7 +3,7 @@
         <div class="container">
           <div class="row site-hero-inner justify-content-center align-items-center">
             <div class="col-md-10 text-center" data-aos="fade-up">
-              <h1 class="heading">{{ msg }}</h1>
+              <h1 class="heading text-capitalize">{{ header.title_alias || header.title }}</h1>
             </div>
           </div>
         </div>
@@ -83,7 +83,6 @@
 export default {
   name: 'HeroSection',
   props: {
-    msg: { type: String, default: "" },
     hero_image: { type: String, default: "" },
     header: { type: Object }
   },

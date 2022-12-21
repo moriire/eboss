@@ -4,7 +4,7 @@
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
               <h2 class="heading" data-aos="fade-up">{{ header.title }}</h2>
-              <p data-aos="fade-up" data-aos-delay="100">{{ header.subtitle }}</p>
+              <p data-aos="fade-up" data-aos-delay="100">{{ header.title_alias || header.subtitle }}</p>
             </div>
           </div>
           <div class="row justify-content-center text-center mb-5" v-if="rooms.length===0" >

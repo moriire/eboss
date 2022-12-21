@@ -36,6 +36,7 @@ class Page(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="page_user+")
     title = models.CharField(max_length=15, choices=CHOICES )
+    title_alias = models.CharField(max_length=30, null=True, blank=True)
     subtitle = models.CharField(max_length=128)
     background = models.ImageField(blank=True, upload_to="background")
     enable = models.BooleanField(default=False)

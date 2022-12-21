@@ -116,7 +116,7 @@ export default {
       </div>
     </nav>
     <!-- END nav -->
-  <HeroSection :msg="hotel.business_name" :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
+  <HeroSection :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
   <AboutSection :about="about.body" :image="about.thumb" v-if="pagetitle.includes('about')" :header="pageHeaders('about')" />
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('team')" :header="pageHeaders('team')" />
   <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />

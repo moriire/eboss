@@ -3,7 +3,7 @@
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">
-              <h2 class="heading text-white text-capitalize" data-aos="fade">{{ header.title }}</h2>
+              <h2 class="heading text-white text-capitalize" data-aos="fade">{{ header.title_alias || header.title }}</h2>
               <p class="text-white" data-aos="fade" data-aos-delay="100">{{ header.subtitle }}</p>
             </div>
           </div>
