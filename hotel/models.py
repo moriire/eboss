@@ -3,7 +3,7 @@ from rest_framework import serializers#.viewsets import ModelViewSet
 from users.models import UserDetailsSerializer
 #from room.models import Room, RoomSerializer
 #from staff.models import Staff, StaffSerializer
-from menu.models import (About, Page, Room, Staff, Menu, Contact, PageSerializer, MenuSerializer, StaffSerializer, RoomSerializer, ContactSerializer)
+from menu.models import (About, AboutSerializer, Page, Room, Staff, Menu, Contact, PageSerializer, MenuSerializer, StaffSerializer, RoomSerializer, ContactSerializer)
 from imgutil import thumbnail
 from users.models import CustomUsers
 
@@ -11,7 +11,7 @@ class Hotel(models.Model):
     user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="profile+")
     hero_image = models.ImageField(blank=True, upload_to="hero")
     contact = models.ManyToManyField(Contact, related_name="hotel_contact+", blank=True)
-    about = models.ManyToManyField(About, blank=True) 
+    about = models.OneToOneField(About, blank=True, on_delete=models.CASCADE, related_name="about+") 
     room = models.ManyToManyField(Room, blank=True)
     staff = models.ManyToManyField(Staff, blank=True)
     menu = models.ManyToManyField(Menu, blank=True)
@@ -36,6 +36,7 @@ class HotelSerializer(serializers.ModelSerializer):
     staff = StaffSerializer(many=True)
     menu = MenuSerializer(many=True)
     contact = ContactSerializer(many=True)
+    about = AboutSerializer()
     class Meta:
         model = Hotel
         fields = "__all__"
