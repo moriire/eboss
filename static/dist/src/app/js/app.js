@@ -772,7 +772,7 @@ module.exports = __webpack_require__.p + "img/round.png";
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "5f8493240519caff"; }
+/******/ 		__webpack_require__.h = function() { return "5aa2dcbf24a236c4"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

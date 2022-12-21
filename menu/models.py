@@ -28,6 +28,7 @@ class Page(models.Model):
     CHOICES = (
         ("home", "home"),
         ("about", "about"),
+        ("room", "room"),
         ("team", "team"),
         ("contact", "contact"),
         ("menu", "menu"),
