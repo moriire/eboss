@@ -30,8 +30,8 @@ def create_hotel_page(sender, instance, created, **kwargs):
 @receiver(post_save, sender = Review)
 def create_hotel_review(sender, instance, created, **kwargs):
     if created:
-        h = Review.objects.get(user = instance.user)
-        h.page.add(instance.id)
+        h = Hotel.objects.get(user = instance.user)
+        h.review.add(instance.id)
 
 @receiver(post_save, sender = About)
 def create_hotel_about(sender, instance, created, **kwargs):

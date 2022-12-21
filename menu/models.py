@@ -4,11 +4,8 @@ from imgutil import thumbnail
 from users.models import CustomUsers 
 
 class Review(models.Model):
-    CHOICES = (
-        (i, i) for i in range(0,6)
-        )
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
-    rate = models.CharField(max_length=2, choices=CHOICES )
+    rate = models.IntegerField(default=5)
     email = models.EmailField()
     full_name = models.CharField(max_length=50)
     img = models.ImageField(upload_to="review", blank=True)
