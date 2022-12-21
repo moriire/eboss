@@ -11,7 +11,7 @@ def create_hotel_profile(sender, instance, created, **kwargs):
         Hotel.objects.create(user = instance, 
                             about="", 
                             )
-        pp = ("home", "about", "room", "team", "menu", "review", "contact")
+        pp = ("home", "about", "rooms", "team", "menu", "review", "contact")
         for p in pp:
             Page.objects.create(
                             user = instance,
