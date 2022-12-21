@@ -22,7 +22,7 @@ export default {
   props: {
     about: { type: String, default:''},
     image: { type: String , default: '' },
-    header: {type: Function, },
+    header: {type: Object, },
   },
 }
 </script>

@@ -41,9 +41,8 @@
 export default {
   name: 'MenuSection',
   props: {
-    //msg: { String, default:''},
     menus: { Array , default: []},
-    header: {type: Function, },
+    header: {type: Object, default: {}},
   },
 }
 </script>

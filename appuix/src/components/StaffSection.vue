@@ -45,7 +45,7 @@ export default {
   props: {
     msg: { String, default:''},
     staffs: { Array , default: []},
-    header: {type: Function, },
+    header: {type: Object, },
   },
 }
 </script>

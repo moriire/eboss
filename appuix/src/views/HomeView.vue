@@ -24,9 +24,9 @@ export default {
       hotel: {},
       about: {},
       rooms: [],
-      leads: [],
       menus: [],
       contacts: [],
+      reviews: [],
       pages: [],
       staffs: [],
       hero_image: "",
@@ -52,6 +52,7 @@ export default {
         const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
         this.hotel = res.data[0].user
         this.about = res.data[0].about
+        this.reviews = res.data[0].review
         this.rooms = res.data[0].room
         this.pages =  res.data[0].page
         this.staffs = res.data[0].staff
@@ -94,7 +95,6 @@ export default {
 }
 </script>
 <template>
-
   <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container" v-if="hotel">
         <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">Logo </span>{{ hotel.business_name }}</a>
@@ -120,7 +120,7 @@ export default {
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('team')" :header="pageHeaders('team')" />
   <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
   <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
-  <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
+  <ReviewSection :reviews="reviews" v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
   <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
   <section class="section bg-image overlay" style="background-image: url(null);">
         <div class="container" >

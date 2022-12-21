@@ -5,7 +5,7 @@ from users.models import CustomUsers
 
 class Review(models.Model):
     CHOICES = (
-        (i, i) for i in range(-5,6)
+        (i, i) for i in range(0,6)
         )
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
     rate = models.CharField(max_length=2, choices=CHOICES )
