@@ -31,6 +31,7 @@ class Page(models.Model):
     CHOICES = (
         ("home", "home"),
         ("about", "about"),
+        ("team", "team"),
         ("contact", "contact"),
         ("menu", "menu"),
         ("review", "review"),
@@ -159,7 +160,7 @@ class Staff(models.Model):
     user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
     full_name = models.CharField(max_length=40)
     position = models.CharField(max_length=30)
-    img = models.ImageField()
+    img = models.ImageField(upload_to="team", blank=True)
     bio = models.TextField(max_length=200, null=True, blank=True )
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -171,10 +172,13 @@ class Staff(models.Model):
         verbose_name_plural = "Staff Section"
 
 
-    def save(self, *a, **b):
+    def save(self, commit=True, *a, **b):
+        #if commit:
         if self.img:
             super(Staff, self).save(*a, **b)
-            thumbnail(self.img, (800, 800))
+            thumbnail(self.img, 800, 800)
+        else:
+            super(Staff, self).save(*a, **b)
 
 class StaffSerializer(serializers.ModelSerializer):
     #posted_by = UserSerializer()

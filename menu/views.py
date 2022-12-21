@@ -113,7 +113,7 @@ class StaffView(ModelViewSet):
             items = items.filter(**pp)
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
-
+    """
     def create(self, request):
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
@@ -123,4 +123,4 @@ class StaffView(ModelViewSet):
             hotel_obj.save()
             return Response(catser.data)
         return Response("something went wrong")
-    
+    """

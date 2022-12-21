@@ -28,6 +28,7 @@ export default {
       menus: [],
       contacts: [],
       pages: [],
+      staffs: [],
       hero_image: "",
 
     }
@@ -53,7 +54,7 @@ export default {
         this.about = res.data[0].about
         this.rooms = res.data[0].room
         this.pages =  res.data[0].page
-        this.leads = res.data[0].staff
+        this.staffs = res.data[0].staff
         this.menus = res.data[0].menu
         this.contacts = res.data[0].contact
         this.hero_image = res.data[0].hero_image
@@ -115,9 +116,9 @@ export default {
     </nav>
     <!-- END nav -->
   <HeroSection :msg="hotel.business_name" :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
-  <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('staff')" :header="pageHeaders('staff')" />
-  <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
   <AboutSection :about="about.body" :image="about.thumb" v-if="pagetitle.includes('about')" :header="pageHeaders('about')" />
+  <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('team')" :header="pageHeaders('team')" />
+  <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
   <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
   <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />

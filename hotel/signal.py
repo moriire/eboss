@@ -11,7 +11,7 @@ def create_hotel_profile(sender, instance, created, **kwargs):
         Hotel.objects.create(user = instance, 
                             about="", 
                             )
-        pp = ("home", "about", "review", "contact", "menu")
+        pp = ("home", "about", "team", "menu", "review", "contact")
         for p in pp:
             Page.objects.create(
                             user = instance,
@@ -31,7 +31,7 @@ def create_hotel_page(sender, instance, created, **kwargs):
 def create_hotel_about(sender, instance, created, **kwargs):
     if created:
         h = Hotel.objects.get(user = instance.user)
-        h.about.add(instance.id)
+        h.about = instance.id
 
 
 @receiver(post_save, sender=Menu)
