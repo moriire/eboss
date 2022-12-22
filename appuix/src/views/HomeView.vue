@@ -122,7 +122,7 @@ export default {
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('team')" :header="pageHeaders('team')" />
   <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection :reviews="reviews" v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
-  <ContactSection :gmap="hotel.gmap" :address="hotel.address" :email="hotel.email" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
+  <ContactSection :gmap="hotel.gmap" :address="hotel.address" :phones="contacts" v-if="pagetitle.includes('contact')" :header="pageHeaders('contact')" />
   <section class="section bg-image overlay" style="background-image: url(null);">
         <div class="container" >
           <div class="row align-items-center">

@@ -36,10 +36,8 @@
 export default {
   name: 'ContactSection',
   props: {
-    msg: { type: String, default: "" },
     hero_image: { type: String, default: "" },
     address: { type: String, default: "" },
-    email: { type: String, default: "" },
     phones: { type: Array, },
     header: {type: Object, },
     gmap: { type: String, default: "" },

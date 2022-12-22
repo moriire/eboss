@@ -7,17 +7,30 @@
               <h2 class="heading text-capitalize" data-aos="fade-up">{{ header.title_alias || header.title }}</h2>
             </div>
           </div>
-          <div class="row">
-            <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200" id="js-carousel-2">
-              <div class="testimonial text-center slider-item" v-for="review in reviews" v-bind:key="review.id" >
-                <!--div class="author-image mb-3">
-                  <img src="/static/dist/src/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
-                </div-->
+          <div class="row jsutify-content-center align-items-center text-center">
+            <div class="col-lg-12 mb-5" data-aos="fade-up" data-aos-delay="200">
+            <Carousel  @loop="true" :margin="10" :settings="settings" :breakpoints="responsive">
+              <Slide v-for="review in reviews" v-bind:key="review.id" >
+                <div class="carousel__item testimonial text-center slider-item" >
+
+
+                <div class="author-image mb-3">
+                  <span>
+                    <i v-for="_ in arr(review.rate)" class="fa fa-star mx-auto text-success"></i><i v-for="wstar in arr(5-review.rate)" class="fa fa-star mx-auto "></i>
+                  
+                  </span> {{ review.rate }} of 5
+                </div>
                 <blockquote>
                   <p>&ldquo; {{ review.comment }}.&rdquo;</p>
                 </blockquote>
                 <p><em>&mdash; {{ review.full_name }}</em></p>
-              </div>
+                </div>
+              </Slide>
+                <template #addons>
+                  <Pagination />
+                  <Navigation />
+                </template>
+              </Carousel>
 
             </div>
               <!-- END slider -->
@@ -25,11 +38,55 @@
 
         </div>
       </section>
+      
 </template>
 
 <script>
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
 export default {
   name: 'ReviewSection',
+  components: {
+    Carousel,
+    Slide,
+    Pagination,
+    Navigation,
+  },
+  methods: {
+    arr(x){
+        return [...Array(x).keys() ]
+    }
+  },
+  data(){
+    return { 
+      // carousel settings
+    settings: {
+      itemsToShow: 1,
+      pauseAutoplayOnHover: true,
+      snapAlign: 'center',
+      autoHeight: true,
+      autoplay:2000, 
+    },
+    responsive:{
+      0:{
+        itemsToShow:1,
+        nav:false
+      },
+      600:{
+        itemsToShow:1,
+        nav:false
+      },
+      1000:{
+        itemsToShow:1,
+        dots: true,
+        nav:true,
+        loop:false
+      }
+    }
+  }
+
+  },
   props: {
     reviews: { type: Array },
     header: { type: Object },
