@@ -18,8 +18,11 @@
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
                 <p><span class="d-block">Address:</span> <span class="text-black text-capitalize"> {{ address }} </span></p>
-                <p><span class="d-block">Phone:</span> <span class="text-black" v-for ="phone in phones.filter(x=>x.nature==='phone')" v-bind:key="phone.phone"> (+234) <a :href="`tel:${phone}`" > {{ phone.phone }} </a>, </span></p>
-                <p><span class="d-block">Email:</span> <span class="text-black">{{ email }}</span></p>
+                <p><span class="d-block">Phone:</span> <span class="text-black" v-for ="phone in phones.filter(x=>x.name==='phone')" v-bind:key="phone.link"> (+234) <a :href="`tel:${phone.link}`" > {{ phone.link }} </a>, </span></p>
+                <p v-for ="phone in phones.filter(x=>x.name==='gmail')" v-bind:key="phone.link" ><span class="d-block">Email:</span> <span class="text-black">{{ phone.link }}</span></p>
+                <p><span class="d-block">Social:</span>
+                   <span v-for ="phone in phones.filter(x=>x.name !== 'phone')" v-bind:key="phone.link" class="text-black display-3">
+                      <a :href="phone.link"> <i :class="`fa fa-${phone.name}`"></i></a></span></p>
               </div>
             </div>
           </div>

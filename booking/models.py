@@ -10,6 +10,7 @@ class Booking(models.Model):
     full_name = models.CharField(max_length=30, null=True, blank=True)
     phone = models.CharField(max_length=30, null=True, blank=True )
     email = models.EmailField()
+    req = models.CharField(max_length=20)
     check_in = models.DateField()
     check_out = models.DateField()
     no_of_adult = models.IntegerField()

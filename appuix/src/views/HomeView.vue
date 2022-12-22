@@ -163,24 +163,36 @@ export default {
             <div class="modal-body">
               <div class="row">
                 <div class="col-md-12" data-aos="fade-up" data-aos-delay="100">
-                  {{ form }}
                   <form @submit.prevent="Book()"  class="bg-white p-4">
                     <div class="row mb-4"><div class="col-12"><h2>Reservation</h2></div></div>
                     <div class="row">
                       <div class="col-md-6 form-group">
                         <label class="text-black font-weight-bold" for="name">Name</label>
-                        <input type="text" id="name" class="form-control " v-model="form.full_name" >
+                        <input type="text" id="name" class="form-control " v-model="form.full_name" required>
                       </div>
                       <div class="col-md-6 form-group">
                         <label class="text-black font-weight-bold" for="phone">Phone</label>
-                        <input type="text" id="phone" class="form-control " v-model="form.phone" >
+                        <input type="text" id="phone" class="form-control " v-model="form.phone" required>
                       </div>
                     </div>
                 
                     <div class="row">
                       <div class="col-md-12 form-group">
                         <label class="text-black font-weight-bold" for="email">Email</label>
-                        <input type="email" id="email" class="form-control " v-model="form.email">
+                        <input type="email" id="email" class="form-control " v-model="form.email" required>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12 form-group">
+                        <label class="text-black font-weight-bold" for="email">Request</label>
+                        <select class="form-control form-select" required v-model="form.req">
+                          <option value="" disabled>Choose your request</option>
+                          <option value="room">Room</option>
+                          <option value="hall">Hall</option>
+                          <option value="restaurant">Restaurant</option>
+                          <option value="lounge">Lounge</option>
+                        </select>
                       </div>
                     </div>
 

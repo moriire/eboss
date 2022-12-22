@@ -1,5 +1,5 @@
 <template>
-  <!-- END section -->
+  
       <section class="section testimonial-section" id="section-review">
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
@@ -8,9 +8,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
-               {{ reviews }}
-         
+            <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200" id="js-carousel-2">
               <div class="testimonial text-center slider-item" v-for="review in reviews" v-bind:key="review.id" >
                 <!--div class="author-image mb-3">
                   <img src="/static/dist/src/images/person_2.jpg" alt="Image placeholder" class="rounded-circle mx-auto">

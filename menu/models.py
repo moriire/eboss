@@ -113,14 +113,16 @@ class Menu(models.Model):
 class Contact(models.Model):
     CHOICES = (
         ("phone", "phone"),
-        ("social", "social"),
+        ("facebook", "facebook"),
+        ("twitter", "twitter"),
+        ("instagram", "instagram"),
+        ("linkedin", "linkedin"),
+        ("gmail", "gmail")
     )
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="hotel+")
-    nature = models.CharField(max_length=15, choices=CHOICES )
-    name = models.CharField(max_length=15)
-    phone = models.CharField(max_length=11, null=True, blank=True)
-    link = models.URLField(null=True, blank=True)
+    name = models.CharField(max_length=15, choices=CHOICES)
+    link = models.CharField(max_length=80, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
