@@ -16,9 +16,9 @@
 
                 <div class="author-image mb-3">
                   <span>
-                    <i v-for="_ in arr(review.rate)" class="fa fa-star mx-auto text-success"></i><i v-for="wstar in arr(5-review.rate)" class="fa fa-star mx-auto "></i>
+                    <i v-for="(_, index) in arr(review.rate)" class="fa fa-star mx-auto text-success" v-bind:key="index"></i><i v-for="(_, index) in arr(5-review.rate)" class="fa fa-star mx-auto text-danger" v-bind:key="index"></i>
                   
-                  </span> {{ review.rate }} of 5
+                  </span>
                 </div>
                 <blockquote>
                   <p>&ldquo; {{ review.comment }}.&rdquo;</p>
