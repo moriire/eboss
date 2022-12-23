@@ -118,7 +118,7 @@ export default {
     <!-- END nav -->
   <HeroSection :hero_image="hero_image" v-if="pagetitle.includes('home')" :header="pageHeaders('home')" />
   <AboutSection :about="about.body" :image="about.thumb" v-if="pagetitle.includes('about')" :header="pageHeaders('about')" />
-  <RoomSection :rooms="rooms" v-if="pagetitle.includes('room')" :header="pageHeaders('room')" />
+  <RoomSection :rooms="rooms" v-if="pagetitle.includes('rooms')" :header="pageHeaders('rooms')" />
   <StaffSection :staffs="staffs" :about="hotel.about" v-if="pagetitle.includes('team')" :header="pageHeaders('team')" />
   <MenuSection  :menus="gmenus" v-if="pagetitle.includes('menu')" :header="pageHeaders('menu')" />
   <ReviewSection :reviews="reviews" v-if="pagetitle.includes('review')" :header="pageHeaders('review')" />
