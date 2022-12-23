@@ -11,6 +11,7 @@ import uuid
 class CustomUsers(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     business_name = models.CharField(_("Business Name"), max_length=80)
+    business_name_alias = models.CharField(_("Business alias"), max_length=12, blank=True, null=True)
     address = models.TextField(default="")
     phone = models.CharField(_("Phone Number"), max_length=11)
     email = models.EmailField(_("email address"), unique=True,)

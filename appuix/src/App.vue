@@ -10,7 +10,5 @@
 <style src="../public/css/bootstrap.min.css"></style>
 <style src="../public/css/style.css"></style>
 <template>
-  <div>
   <router-view></router-view>
-  </div>
 </template>

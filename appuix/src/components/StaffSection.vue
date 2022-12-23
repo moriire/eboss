@@ -25,7 +25,7 @@
                 </blockquote>
                 <div class="author d-flex">
                   <div class="image mr-3 align-self-center">
-                    <img :src="staff.img" alt="" />
+                    <img :src="staff.img" :alt="staff.full_name" />
                   </div>
                   <div class="name align-self-center">{{ staff.full_name }} <span class=""> {{ staff.position }} </span></div>
                 </div>

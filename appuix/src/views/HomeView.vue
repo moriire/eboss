@@ -44,9 +44,9 @@ export default {
     chTitle(title){
       document.title = `${title.toUpperCase()} | ${this.hotel.business_name}`
     },
-    async pageHeaders(x){
+    pageHeaders(x){
       if (this.pages.length){
-        return await this.pages.filter(y => y.title==x)[0]
+        return this.pages.filter(y => y.title==x)[0]
       } else {
         return ""
       }
@@ -83,6 +83,15 @@ export default {
     
   },
   computed: {
+    bn(){
+      let hot = this.hotel.business_name_alias;
+      if (hot){
+          return [hot.substr(0,1), hot.substr(1)]
+      }
+      else {
+        return ['Logo', this.hotel.business_name]
+      }
+    },
     pagetitle(){
       if (this.pages) {
             return this.pages.map(x=>x.title)
@@ -101,7 +110,7 @@ export default {
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container" v-if="hotel">
-        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">Logo </span>{{ hotel.business_name }}</a>
+        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">{{ bn[0] }} </span>{{ bn[1] }}</a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
