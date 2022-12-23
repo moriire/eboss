@@ -141,7 +141,7 @@ class Room(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="room")
     title = models.CharField(max_length=30)
-    duration = models.CharField(max_length=30)
+    duration = models.CharField(max_length=30, default="daily")
     price = models.FloatField(max_length=30, null=True, blank=True )
     img = models.ImageField(upload_to="rooms/", blank=True)
     note = models.TextField(blank = True)
