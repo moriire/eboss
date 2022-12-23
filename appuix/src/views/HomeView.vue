@@ -34,16 +34,19 @@ export default {
 
     }
   },
-  mounted() {
+  created() {
     this.getStaffs()
+  },
+  mounted(){
+    
   },
   methods: {
     chTitle(title){
       document.title = `${title.toUpperCase()} | ${this.hotel.business_name}`
     },
-    pageHeaders(x){
+    async pageHeaders(x){
       if (this.pages.length){
-        return this.pages.filter(y => y.title==x)[0]
+        return await this.pages.filter(y => y.title==x)[0]
       } else {
         return ""
       }
@@ -52,6 +55,7 @@ export default {
       try {
         const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
         this.hotel = res.data[0].user
+        document.title = `Welcome to ${this.hotel.business_name}`
         this.about = res.data[0].about
         this.reviews = res.data[0].review
         this.rooms = res.data[0].room
@@ -81,7 +85,6 @@ export default {
   computed: {
     pagetitle(){
       if (this.pages) {
-            document.title = `Welcome to ${this.hotel.business_name}`
             return this.pages.map(x=>x.title)
           }
       return []
