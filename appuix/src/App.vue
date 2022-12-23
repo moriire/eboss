@@ -2,7 +2,6 @@
 </script>
 <style src="../public/css/style.css"></style>
 <style src="../public/css/bootstrap.min.css"></style>
-<style src="../public/css/owl.carousel.min.css"></style>
 <style src="../public/fonts/fontawesome/css/font-awesome.min.css"></style>
 <style src="../public/fonts/ionicons/css/ionicons.min.css"></style>
 <style src="../public/css/fancybox.min.css"></style>
