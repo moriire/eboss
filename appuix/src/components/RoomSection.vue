@@ -13,14 +13,14 @@
             </div>
           </div>
           <div class="row" v-else >
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" v-for = "room in rooms" v-bind:key="room.id">{{ room }}
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" v-for = "room in rooms" v-bind:key="room.id">
               <a href="#" class="room">
                 <figure class="img-wrap">
-                  <img :src="room.img" alt="{{room.price}}" class="img-fluid mb-3">
+                  <img :src="room.img" :alt="room.price" class="img-fluid mb-3">
                 </figure>
                 <div class="p-3 text-center room-info">
                   <h2>{{ room.title }}</h2>
-                  <span class="text-uppercase letter-spacing-1">{{ room.price }} / per night</span>
+                  <span class="text-uppercase letter-spacing-1">&#8358; {{ room.price }} / per night</span>
                 </div>
               </a>
             </div>
