@@ -38,7 +38,7 @@ from dj_rest_auth.serializers import UserDetailsSerializer
 class UserDetailsSerializer(UserDetailsSerializer):
     class Meta:   
         model = CustomUsers
-        fields = ["pk", "email", "phone", "business_name", "address", "gmap"]
+        fields = ["pk", "email", "phone", "business_name", "business_name_alias", "address", "gmap"]
  
 
 class CustomRegisterSerializer(RegisterSerializer):

@@ -18,10 +18,9 @@
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
                 <p><span class="d-block">Address:</span> <span class="text-black text-capitalize"> {{ address }} </span></p>
-                <p><span class="d-block">Phone:</span> <span class="text-black" v-for ="phone in phones.filter(x=>x.name==='phone')" v-bind:key="phone.link"> (+234) <a :href="`tel:${phone.link}`" > {{ phone.link }} </a>, </span></p>
+                <p><span class="d-block">Phone:</span> <span class="text-black" v-for ="(phone, index) in phones.filter(x=>x.name==='phone')" v-bind:key="index"> (+234) <a :href="`tel:${phone.link}`" > {{ phone.link }} </a>, </span></p>
                 <p>
-                <span class="d-block">Email:</span> <span class="text-black" v-for ="(email, index) in phones.filter(x=>x.name==='gmail')" v-bind:key="index">{{ email.link }}</span>
-                </p>
+                <span class="d-block">Email:</span> <span class="text-black" v-for ="(email, index) in phones.filter(x=>x.name==='gmail')" v-bind:key="index">{{ email.link }}</span></p>
                 <p><span class="d-block">Social:</span>
                    <span v-for ="(soc, index) in phones.filter(x=> x.name !== 'phone')" v-bind:key="index" class="text-black display-3">
                       <a :href="soc.link"> <i :class="`fa fa-${soc.name}`"></i></a></span></p>

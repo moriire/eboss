@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
-   { path: "/hotel/user/:user_id", component: () => import(/* webpackChunkName: "about" */ '@/views/HomeView.vue')},
+   { path: "/:user_id", component: () => import(/* webpackChunkName: "about" */ '@/views/HomeView.vue')},
 ]
 
 const router = createRouter({

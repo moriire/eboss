@@ -57,7 +57,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('hotel/user/<str:page1>', apphome, name="app_index"),
+    path('<str:page1>', apphome, name="app_index"),
     re_path(r'^v1/api/', include(router.urls)),
     re_path(r'^v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),

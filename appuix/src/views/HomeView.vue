@@ -53,7 +53,7 @@ export default {
     },
     async getStaffs(){
       try {
-        const res = await axios.get(`${location.origin}/v1/api/hotel/?user=${this.$route.params.user_id}`)
+        const res = await axios.get(`${location.origin}/v1/api/hotel/?user__email=${this.$route.params.user_id}@gmail.com`)
         this.hotel = res.data[0].user
         document.title = `Welcome to ${this.hotel.business_name}`
         this.about = res.data[0].about
@@ -110,7 +110,7 @@ export default {
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark pb_navbar pb_scrolled-light" id="templateux-navbar">
       <div class="container" v-if="hotel">
-        <a class="navbar-brand" :href="`/hotel/user/${$route.params.user_id}`"><span class="text-danger">{{ bn[0] }} </span>{{ bn[1] }}</a>
+        <a class="navbar-brand" :href="`/${$route.params.user_id}`"><span class="text-danger">{{ bn[0] }} </span>{{ bn[1] }}</a>
         <div class="site-menu-toggle js-site-menu-toggle  ml-auto"  data-aos="fade" data-toggle="collapse" data-target="#templateux-navbar-nav" aria-controls="templateux-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span></span>
               <span></span>
