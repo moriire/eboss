@@ -1,5 +1,6 @@
 <script>
 /* eslint-disable */
+import alertify from "alertifyjs"
 import HeroSection from "@/components/HeroSection.vue"
 import AboutSection from "@/components/AboutSection.vue"
 import StaffSection from "@/components/StaffSection.vue"
@@ -8,6 +9,8 @@ import MenuSection from "@/components/MenuSection.vue"
 import ReviewSection from "@/components/ReviewSection.vue";
 import ContactSection from "@/components/ContactSection.vue";
 
+alertify.set('notifier','position', 'top-center');
+ 
 Array.prototype.groupBy = function(key) {return this.reduce((hash, obj) => {
 if(obj[key] === undefined) return hash;
 return Object.assign(hash, { [obj[key]]:( hash[obj[key]] || [] ).concat(obj)})
@@ -20,7 +23,7 @@ export default {
   components: { HeroSection, AboutSection, RoomSection, StaffSection, MenuSection, ReviewSection, ContactSection },
   data(){
     return {
-      form: {user: this.$route.params.user_id},
+      form: {},
       fresh: new Date().getFullYear(),
       hotel: {},
       about: {},
@@ -74,10 +77,11 @@ export default {
       try {
         this.form.no_of_adult = parseInt(this.form.no_of_adult);
         this.form.no_of_kids = parseInt(this.form.no_of_kids);
+        this.form.user = this.hotel.id;
         const res = await axios.post(`${location.origin}/v1/api/booking/`, this.form)
-        alert("success")
+        alertify.success("successfully posted. You'll get a feedback from them shortly!")
       } catch(e){
-        alert("failed booking")
+        alertify.error("Check the form and try again to book")
       }
     },
     
@@ -267,3 +271,14 @@ export default {
         </div>
       </div>
 </template>
+<style scoped>
+@import "alertifyjs/build/css/alertify.min.css"
+</style>
+<style scoped>
+.alertify-notifier {
+    color: #ffff;
+}
+.alertify-notifier .ajs-message.ajs-success{
+    color: #ffff;
+}
+</style>
