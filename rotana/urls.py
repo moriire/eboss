@@ -5,7 +5,7 @@ from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 #from staff.views import StaffView
-from menu.views import (MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
+from menu.views import (AboutView, MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
 from booking.views import BookingView
 from hotel.views import HotelView
 
@@ -21,6 +21,7 @@ router = DefaultRouter()
 
 
 router.register("page", PageView)
+router.register("about", AboutView)
 router.register("room", RoomView)
 router.register("menu", MenuView)
 router.register("staff", StaffView)
@@ -65,7 +66,7 @@ urlpatterns = [
     path('v1/api/', include(router.urls)),
     path('v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^v1/api/auth/signup/$', include('dj_rest_auth.registration.urls')),
+    path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
     re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),

@@ -39,7 +39,7 @@ class Page(models.Model):
     title = models.CharField(max_length=15, choices=CHOICES )
     title_alias = models.CharField(max_length=30, null=True, blank=True)
     subtitle = models.CharField(max_length=128)
-    background = models.ImageField(blank=True, upload_to="background")
+    background = models.ImageField(blank=True, null=True, upload_to="background")
     enable = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -67,7 +67,7 @@ class About(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="page_user+")
     body = models.TextField(max_length=256)
-    thumb = models.ImageField(blank=True, upload_to="about")
+    thumb = models.ImageField(blank=True, null=True, upload_to="about")
 
     def save(self, commit=True, *a, **b):
         #if commit:
