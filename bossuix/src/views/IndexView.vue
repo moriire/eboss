@@ -1,6 +1,6 @@
 <template>
 
-<div class="row vh-100 rounded align-items-center justify-content-center mx-0">
+<div class="row vh-100 rounded align-items-center justify-content-center mx-0 text-dark text-primary">
 <div class="col-lg-8 text-center my-auto mx-auto" v-if="globals.state.loggedIn!==null" >        <h1 class="display-1">B.O.S.S.</h1>
 <hr/>
   <h3 class="display-5">{{ globals.state.data.user.business_name }} </h3>

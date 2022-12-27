@@ -27,7 +27,7 @@
                                     aria-describedby="basic-addon1" v-model="form.note">
                                 </textarea>
                             </div>
-                        <button type="submit" class="btn btn-primary py-3 w-50 mb-4 text-capitalize">Add {{ $route.path.split('/')[3] }}</button>
+                        <button type="submit" class="btn btn-primary py-3 w-50 mb-4 text-capitalize">Add {{ $route.path.split('/')[0] }}</button>
                     </form>
                     </div>
                 </div>

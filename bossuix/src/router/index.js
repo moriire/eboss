@@ -1,8 +1,8 @@
 /* eslint-disable */
-import Bubbles from "../Bubbles"
 import IndexView from "../views/IndexView";
 import { createRouter, createWebHistory } from 'vue-router'
 import LayoutView from '../views/LayoutView.vue'
+import AppLayout from '../views/AppLayout.vue'
 import { LoginView, RegisterView, AccountLayout, } from '../views/account'
 //import { HomeView }  from '../views/basic'
 import { RegisterPagesView,  AboutPageView, RoomPageView, HeroPageView, ContactPageView, ReviewPageView, MenuPageView } from "../views/client"
@@ -56,7 +56,7 @@ const routes = [
       { path: "login", component: LoginView},
       { path: "register", component: RegisterView},
     ]
-  },
+  },/*
   {
     path: '/setup',
     name: 'Setup',
@@ -66,19 +66,13 @@ const routes = [
       { path: "", component: RegisterPagesView},
       { path: ":pagenav", component: AboutPageView},
     ]
-  },
-  {
-    path: '/:page',
-    name: 'Section',
-    component: LayoutView,
-    beforeEnter: guardMyroute,
-    children: [
+  },*/
+  //{ path: "/page/all", component: RoomPageView, name:"page"},
+  /*
       { path: "room", component: RoomPageView},
       { path: "menu", component: MenuPageView},
       { path: "review", component: ReviewPageView},
-      { path: "contact", component: ContactPageView},
-    ]
-  },
+      { path: "contact", component: ContactPageView},*/
   {
     path: '/dashboard',
     name: 'Dashboard',
@@ -86,15 +80,10 @@ const routes = [
     beforeEnter: guardMyroute,
     children: [
       { path: '',  component: DashboardView, name: "dashboad-home"},
-      /*
-      { path: 'create',  component: CreateTargetView },
-      { path: 'savings',  component: SavingsTargetView},
-      { path: 'savings/:id',  component: SingleSavingsView},
-      { path: 'start',  component:  StartSavingView },
-      */
-    ]
+      ]
 
   },
+
   {
     path: '/',
     name: 'Home',

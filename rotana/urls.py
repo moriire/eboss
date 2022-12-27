@@ -11,7 +11,7 @@ from hotel.views import HotelView
 
 from django.shortcuts import render
 
-def apphome(request, page1):
+def apphome(request, **kw):
     return render(request, "app/index.html", {})
 
 def homepage(request, **kw):
@@ -57,15 +57,15 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('<str:page1>', apphome, name="app_index"),
-    re_path(r'^v1/api/', include(router.urls)),
-    re_path(r'^v1/api/auth/', include('dj_rest_auth.urls')),
-    re_path(r'^admin/', admin.site.urls),
-    re_path(r'^v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
-    path("", homepage, name="home"),
+    path('', homepage, name="home"),
+    path('dashboard', homepage, name="index-3"),
     path('account/<str:page>', homepage, name="index-1"),
-    re_path(r'^dashboard', homepage, name="index-3"),
-    re_path(r'^setup', homepage, name="index-4"),
+    path('<str:setup>/<str:s>', apphome, name="index-4"),
+    path('<str:page1>', apphome, name="app_index"),
+    path('v1/api/', include(router.urls)),
+    path('v1/api/auth/', include('dj_rest_auth.urls')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^v1/api/auth/signup/$', include('dj_rest_auth.registration.urls')),
     re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),
