@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "allauth",
     "allauth.account",
-    #"allauth.socialaccount",
+    "allauth.socialaccount",
     "dj_rest_auth",
     'dj_rest_auth.registration',
     'users',
+    "products",
     'booking',
     'menu',
     'hotel',
@@ -162,6 +163,9 @@ JWT_AUTH_COOKIE = 'jwt-auth'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 CORS_ORIGIN_ALLOW_ALL = True
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
     )
@@ -169,19 +173,21 @@ REST_FRAMEWORK = {
 
 REST_AUTH_SERIALIZERS = {
     #'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
-    #'TOKEN_SERIALIZER': 'path.to.custom.TokenSerializer',
-    'REGISTER_SERIALIZER': 'users.models.CustomRegisterSerializer',
+    #'JWT_SERIALIZER': 'users.models.CustomJWTSerializer',
+    'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
     "USER_DETAILS_SERIALIZER":'users.models.UserDetailsSerializer',
 }
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': True,
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=30),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+ACCOUNT_ADAPTER = 'users.models.CustomUserAccountAdapter'

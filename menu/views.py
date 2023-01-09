@@ -3,6 +3,38 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from menu.models import ( About, AboutSerializer, PageSerializer, Page, Review, ReviewSerializer, MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact) 
 from hotel.models import Hotel
+from users.models import CustomUsers
+
+class AboutImagesView(ModelViewSet):
+    queryset = About.objects.all().select_related()
+    serializer_class = AboutSerializer
+
+    def create(self, request, **kw):
+        uploaded_by = request.query_params.get("uploaded_by")
+        print(uploaded_by)
+        about = About.objects.get(user = uploaded_by)
+        print(about.thumb)
+        about.thumb.delete()
+        about.thumb = request.data["thumb"]
+        about.save()
+        print(about.thumb)
+        print("image uploaded")
+        return Response({ "data": "success", "status": 200})
+
+class RoomImagesView(ModelViewSet):
+    queryset = Room.objects.all().select_related()
+    serializer_class = RoomSerializer
+
+    def create(self, request, **kw):
+        uploaded_by = request.query_params.get("uploaded_by")
+        print(uploaded_by)
+        user = CustomUsers.objects.get(pk=uploaded_by)
+        room = Room.objects.create(
+            user = user,
+            img = request.data["img"]
+            )
+        print("image uploaded")
+        return Response({ "data": "success", "status": 200})
 
 class AboutView(ModelViewSet):
     queryset = About.objects.all().select_related()
@@ -87,9 +119,8 @@ class ContactView(ModelViewSet):
         return Response(ser.data)
 
 class RoomView(ModelViewSet):
-    queryset = Room.objects.all().prefetch_related()
+    queryset = Room.objects.all()
     serializer_class = RoomSerializer
-    lookup_field = "id"
 
     def list(self, request):
         items = self.get_queryset()
@@ -99,6 +130,18 @@ class RoomView(ModelViewSet):
             items = items.filter(**pp)
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
+
+    def update(self, request, **kw):
+        room = self.get_queryset().get(id=request.data['id'])
+        room.user = CustomUsers.objects.get(pk = request.data['user'])
+        ser = self.get_serializer(room)
+        room.price = int(request.data['price'])
+        room.title = request.data['title']
+        room.note = request.data['note']
+        room.save()
+        print("image uploaded")
+        return Response(ser.data)
+
 
 class StaffView(ModelViewSet):
     queryset = Staff.objects.all()

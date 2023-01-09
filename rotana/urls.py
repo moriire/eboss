@@ -5,20 +5,31 @@ from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 #from staff.views import StaffView
-from menu.views import (AboutView, MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
+from menu.views import (RoomImagesView, AboutImagesView, AboutView, MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
 from booking.views import BookingView
-from hotel.views import HotelView
+from hotel.views import HotelView, VisitLogView, HeroImagesView, EcommerceView
+
+
+
+#from subscriptions.views import SubscriptionsView
+from products.views import (CategoriesView, ProductsView, GenProductsView, ProductThumbsView, AdsView)
 
 from django.shortcuts import render
 
-def apphome(request, **kw):
+def apphome(request, page1=None, page2=None, setup=None):
     return render(request, "app/index.html", {})
 
 def homepage(request, **kw):
     return render(request, "homepage.html", {})
 
-router = DefaultRouter()
+def ecomm(request, page2):
+    return render(request, "ecomm/index.html", {})
 
+router = DefaultRouter()
+router.register("categories", CategoriesView)
+router.register("products", ProductsView)
+router.register("gproducts", GenProductsView)
+router.register("ads", AdsView)
 
 router.register("page", PageView)
 router.register("about", AboutView)
@@ -29,6 +40,12 @@ router.register("booking", BookingView)
 router.register("contact", ContactView)
 router.register("review", ReviewView)
 router.register("hotel", HotelView)
+router.register("ecommerce", EcommerceView)
+router.register("hits", VisitLogView)
+router.register("about-thumb", AboutImagesView)
+router.register("hero-thumb", HeroImagesView)
+router.register("rooms-thumb", RoomImagesView)
+router.register("product-thumbs", ProductThumbsView)
 
 
 from drf_yasg import openapi
@@ -60,9 +77,14 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('', homepage, name="home"),
     path('dashboard', homepage, name="index-3"),
+    path('d/<str:d>', homepage, name="index-30"),
+    path('booking', homepage, name="index-book"),
     path('account/<str:page>', homepage, name="index-1"),
-    path('<str:setup>/<str:s>', apphome, name="index-4"),
-    path('<str:page1>', apphome, name="app_index"),
+    path('add/<str:add>', homepage, name="index-2"),
+    #path('rooms', homepage, name="index-2"),
+    path('page/edit', apphome, name="index-4"),
+    path('hotel/<str:page1>', apphome, name="app_index"),
+    path('shop/<str:page2>', ecomm, name="ecomm_index"),
     path('v1/api/', include(router.urls)),
     path('v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),

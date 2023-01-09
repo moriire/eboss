@@ -8,7 +8,7 @@ class Review(models.Model):
     rate = models.IntegerField(default=5)
     email = models.EmailField()
     full_name = models.CharField(max_length=50)
-    img = models.ImageField(upload_to="review", blank=True)
+    #img = models.ImageField(upload_to="review", blank=True)
     comment = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -29,6 +29,7 @@ class Page(models.Model):
         ("home", "home"),
         ("about", "about"),
         ("rooms", "rooms"),
+        ("products", "products"),
         ("team", "team"),
         ("contact", "contact"),
         ("menu", "menu"),
@@ -66,7 +67,7 @@ class PageSerializer(serializers.ModelSerializer):
 class About(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="page_user+")
-    body = models.TextField(max_length=256)
+    body = models.TextField(max_length=256, default="my about sample text should be about 100-150 words")
     thumb = models.ImageField(blank=True, null=True, upload_to="about")
 
     def save(self, commit=True, *a, **b):
@@ -140,11 +141,11 @@ class ContactSerializer(serializers.ModelSerializer):
 class Room(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE,
      related_name="room")
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=30, default="Change Name")
     duration = models.CharField(max_length=30, default="daily")
-    price = models.FloatField(max_length=30, null=True, blank=True )
-    img = models.ImageField(upload_to="rooms/", blank=True)
-    note = models.TextField(blank = True)
+    price = models.FloatField(default=0.0)
+    img = models.ImageField(upload_to="rooms/", null=True, blank=True)
+    note = models.TextField(default="room detail")
     created_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -9,4 +9,12 @@ from booking.models import BookingSerializer, Booking
 class BookingView(ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-    #lookup_field = "id"
+
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
+        ser = self.get_serializer(items, many=True)
+        return Response(ser.data)
