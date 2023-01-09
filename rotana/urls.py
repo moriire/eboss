@@ -55,15 +55,15 @@ from drf_yasg.views import get_schema_view
 from rest_framework.documentation import include_docs_urls
 
 admin.site.site_title = "Admin"
-admin.site.index_title = "Rotana Hotels Ltd Web Dashboard"
+admin.site.index_title = "eBoss Web Dashboard"
 admin.site.site_url = "/"
-admin.site.site_header = "Rotana"
+admin.site.site_header = "eBoss"
 # Swagger documentation setup
 schema_view = get_schema_view(
                         openapi.Info(
                 title="Rotana API Snippets",
                 default_version='v1.0.1',
-                description="Rotana Hotels Ltd",
+                description="eBoss",
                 website="/",
                 terms_of_service="/terms_of_services/",
                 privacy_policy="/privacy_policy/",
@@ -89,7 +89,7 @@ urlpatterns = [
     path('v1/api/auth/', include('dj_rest_auth.urls')),
     re_path(r'^admin/', admin.site.urls),
     path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
-    re_path(r'^docs/', include_docs_urls(title='Rotana Hotel and Suites Backend')),                           
+    re_path(r'^docs/', include_docs_urls(title='eBoss API Backend')),                           
     re_path(r'^swagger(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'
