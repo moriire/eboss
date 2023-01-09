@@ -61,7 +61,7 @@ admin.site.site_header = "eBoss"
 # Swagger documentation setup
 schema_view = get_schema_view(
                         openapi.Info(
-                title="Rotana API Snippets",
+                title="eBoss API Snippets",
                 default_version='v1.0.1',
                 description="eBoss",
                 website="/",
