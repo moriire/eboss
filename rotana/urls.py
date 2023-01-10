@@ -90,9 +90,9 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
     re_path(r'^docs/', include_docs_urls(title='eBoss API Backend')),                           
-    re_path(r'^swagger(?P<format>\.json|\.yaml)$',
+    re_path(r'^docs-2(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'
+    re_path(r'^docs-2/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'
 ),                                                    
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

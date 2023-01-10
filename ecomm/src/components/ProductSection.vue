@@ -1,7 +1,7 @@
 <template>
   <!-- product_section - start
             ================================================== -->
-            <div class="product_section sec_ptb_100 clearfix">
+            <div class="product_section sec_ptb_100 clearfix min-vh-100">
                 <div class="container">
                     <div class="row">
 
@@ -43,7 +43,10 @@
                             <div class="tab-content">
                                 <div id="grid_layout" class="tab-pane fade">
                                     <div class="row mb_50">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" v-for="(product, index) in products" v-bind:key="index">
+                                        <div class="carparts_product_grid text-center" data-bg-color="#f0eeee" v-if="products.length===0">
+                                            <h2>No active products yet</h2>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" v-for="(product, index) in products" v-bind:key="index" v-else>
                                             <div class="carparts_product_grid" data-bg-color="#f0eeee">
                                                 <div class="item_image" data-bg-color="#f8f8f8">
                                                     <img :src="product.images[0].thumb" alt="image_not_found">
@@ -80,7 +83,10 @@
 
                                 <div id="list_layout" class="tab-pane active">
                                     <div class="mb_50">
-                                        <div class="carparts_product_listlayout" data-bg-color="#f0eeee" v-for="(product, index) in products" v-bind:key="index">
+                                        <div class="carparts_product_listlayout text-center" data-bg-color="#f0eeee" v-if="products.length===0">
+                                           <h2> No Active Product yet</h2>
+                                        </div>
+                                        <div class="carparts_product_listlayout" data-bg-color="#f0eeee" v-for="(product, index) in products" v-bind:key="index" v-else>
                                             <div class="item_image" data-bg-color="#f8f8f8">
                                                 <img :src="product.images[0].thumb" alt="image_not_found">
                                                 <ul class="product_label ul_li text-uppercase clearfix">
@@ -160,7 +166,6 @@
             </div>
             <!-- product_section - end
             ================================================== -->
-  
 </template>
 <script>
 //import ProductQV from '@/components/ProductQV.vue'

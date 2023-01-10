@@ -1,6 +1,6 @@
 <template>
   
-      <section class="section testimonial-section" id="section-review">
+      <section class="section testimonial-section min-vh-100" id="section-review">
         <div class="container">
           <div class="row justify-content-center text-center mb-5">
             <div class="col-md-7">

@@ -53,7 +53,7 @@ class Page(models.Model):
             super(Page, self).save(*a, **b)
 
     def __str__(self):
-        return self.title
+        return f"{self.user.business_name} - {self.title}"
 
     class Meta:
         verbose_name = "Enable & Disable Page"
