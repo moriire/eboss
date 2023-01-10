@@ -112,6 +112,7 @@ venv.bak/
 #Vue3 unimportant
 appuix/
 bossuix/
+ecomm/
 # Spyder project settings
 .spyderproject
 .spyproject
