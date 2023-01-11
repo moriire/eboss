@@ -98,11 +98,11 @@ class GenProductSerializer(ModelSerializer):
 
 class Ads(models.Model):
 	product = models.ForeignKey(Product, on_delete = models.CASCADE, related_name="productads+")
-	imgs = models.ManyToManyField(ProductImages, blank=True)
+	img = models.ForeignKey(ProductImages, on_delete=models.CASCADE, related_name='img+')
 	created_on = models.DateTimeField(auto_now_add = True)
 
-	def __str__(seWithCalf):
-		return self.created_on
+	def __str__(self):
+		return f"{self.product.name}-self.created_on"
 # Create your models here.
 
 
@@ -113,7 +113,7 @@ class AdSerializer(ModelSerializer):
 
 class XAdSerializer(ModelSerializer):
 	product = ProductSerializer()
-	imgs = ProductImageSerializer(many=True)
+	img = ProductImageSerializer()
 	class Meta:
 		model = Ads
 		fields = "__all__"
