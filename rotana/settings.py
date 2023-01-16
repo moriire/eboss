@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "storages",
+    #"storages",
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
@@ -93,11 +93,21 @@ WSGI_APPLICATION = 'rotana.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    #'default': {
+     #   'ENGINE': 'django.db.backends.mysql',
+      #  'NAME': 'rotana$default',
+       # 'USERNAME': 'rotana',
+        #'HOST': 'rotana.mysql.pythonanywhere-services.com',
+        #'PASSWORD': '',
+    #}
+    
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+    
 }
+
 
 
 # Password validation
@@ -129,15 +139,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-#STATICFILES_DIRS = [ BASE_DIR /'static', ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_DIRS = [ BASE_DIR /'static', ]
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,  "static")
+#STATIC_ROOT = os.path.join(BASE_DIR,  "static")
 
-MEDIA_URL= '/media/'
+MEDIA_URL= 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -209,5 +219,5 @@ AWS_DEFAULT_ACL = None
 AWS_S3_VERIFY = True
 
 #DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIAFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#MEDIAFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

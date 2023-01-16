@@ -44,6 +44,7 @@ router.register("ecommerce", EcommerceView)
 router.register("hits", VisitLogView)
 router.register("about-thumb", AboutImagesView)
 router.register("hero-thumb", HeroImagesView)
+router.register("logo", HeroImagesView)
 router.register("rooms-thumb", RoomImagesView)
 router.register("product-thumbs", ProductThumbsView)
 

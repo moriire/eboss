@@ -28,6 +28,7 @@ class VisitLogSerializer(serializers.ModelSerializer):
 
 class Ecommerce(models.Model):
     user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="ecomm+")
+    logo = models.ImageField(blank=True, upload_to="logo")
     hero_image = models.ImageField(blank=True, upload_to="hero")
     contact = models.ManyToManyField(Contact, related_name="hotel_contact+", blank=True)
     about = models.OneToOneField(About, blank=True, on_delete=models.CASCADE, related_name="about+") 
@@ -61,6 +62,7 @@ class EcommerceSerializer(serializers.ModelSerializer):
 
 class Hotel(models.Model):
     user = models.OneToOneField(CustomUsers, on_delete=models.CASCADE, related_name="profile+")
+    logo = models.ImageField(blank=True, upload_to="logo")
     hero_image = models.ImageField(blank=True, upload_to="hero")
     contact = models.ManyToManyField(Contact, related_name="hotel_contact+", blank=True)
     about = models.OneToOneField(About, blank=True, on_delete=models.CASCADE, related_name="about+") 

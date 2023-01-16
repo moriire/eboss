@@ -36,6 +36,31 @@ class HeroImagesView(ModelViewSet):
             return Response({ "data": "success", "status": 200})
         return Response({ "data": "success", "status": 200})
 
+class LogoImagesView(ModelViewSet):
+    queryset = Hotel.objects.all().select_related()
+    serializer_class = HotelSerializer
+
+    def create(self, request, **kw):
+        uploaded_by = request.query_params.get("uploaded_by")
+        business_type = request.query_params.get("business_type")
+        hotel={}
+        if business_type == "hospitality":
+            hotel = Hotel.objects.get(user = uploaded_by)
+            hotel.logo.delete()
+            hotel.logo = request.data["logo"]
+            hotel.save()
+            print(hotel.logo)
+            return Response({ "data": "success", "status": 200})
+        if business_type == "ecommerce":
+            hotel = Ecommerce.objects.get(user = uploaded_by)
+            hotel.logo.delete()
+            hotel.logo = request.data["logo"]
+            hotel.save()
+            print(hotel.logo)
+            print("image uploaded")
+            return Response({ "data": "success", "status": 200})
+        return Response({ "data": "success", "status": 200})
+
 class EcommerceView(ModelViewSet):
     queryset = Ecommerce.objects.all()
     serializer_class = EcommerceSerializer

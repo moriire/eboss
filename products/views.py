@@ -58,7 +58,7 @@ class ProductThumbsView(ModelViewSet):
 		gproduct.images.add(product_image_obj.id)
 		gp_obj = gproduct.save()
 		ecomm = Ecommerce.objects.get(user__pk = user)
-		ecomm.products.add(gp_obj.id)
+		ecomm.products.add(gp_obj)
 		ecomm.save()
 		return Response({ "data": "success", "status": 200})
 

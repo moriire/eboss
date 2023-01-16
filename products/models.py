@@ -1,8 +1,9 @@
 from django.db import models
 from rest_framework.serializers import ModelSerializer
-from users.models import CustomUsers
+from users.models import CustomUsers, UserDetailsSerializer
 from imgutil import thumbnail
 import os
+
 #(lambda x: f"products/{'_'.join(x.split(' '))}")(product.name)
 def prod_loc(instance, filename):
 	print("uploading to", instance.product.name)
@@ -52,6 +53,7 @@ class ProductWithCategorySerializer(ModelSerializer):
 		fields = "__all__"
 
 class ProductSerializer(ModelSerializer):
+	user = UserDetailsSerializer()
 	class Meta:
 		model = Product
 		fields = "__all__"
