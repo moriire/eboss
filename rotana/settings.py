@@ -174,6 +174,7 @@ JWT_AUTH_COOKIE = 'jwt-auth'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 CORS_ORIGIN_ALLOW_ALL = True
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],

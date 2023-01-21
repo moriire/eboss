@@ -77,25 +77,27 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', homepage, name="home"),
+    path('<str:user>/<str:user_id>', homepage, name="home"),
     path('dashboard', homepage, name="index-3"),
     path('d/<str:d>', homepage, name="index-30"),
     path('booking', homepage, name="index-book"),
     path('account/<str:page>', homepage, name="index-1"),
     path('add/<str:add>', homepage, name="index-2"),
     #path('rooms', homepage, name="index-2"),
-    path('page/edit', apphome, name="index-4"),
-    path('hotel/<str:page1>', apphome, name="app_index"),
-    path('shop/<str:page2>', ecomm, name="ecomm_index"),
+    #path('page/edit', apphome, name="index-4"),
+    #path('hotel/<str:page1>', apphome, name="app_index"),
+    #path('shop/<str:page2>', ecomm, name="ecomm_index"),
     path('v1/api/', include(router.urls)),
     path('v1/api/auth/', include('dj_rest_auth.urls')),
-    re_path(r'^admin/', admin.site.urls),
     path('v1/api/auth/signup/', include('dj_rest_auth.registration.urls')),
     re_path(r'^docs/', include_docs_urls(title='eBoss API Backend')),                           
     re_path(r'^docs-2(?P<format>\.json|\.yaml)$',
  schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    re_path(r'^docs-2/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'
+    re_path(r'^docs-3/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'
 ),                                                    
-    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    re_path(r'^docs-4/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    re_path(r'^admin/', admin.site.urls),
+    
 ]
 
 if settings.DEBUG:
