@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from menu.models import ( About, AboutSerializer, PageSerializer, Page, Review, ReviewSerializer, MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact) 
-from hotel.models import Hotel
+from menu.models import (
+ #About, AboutSerializer,
+ #PageSerializer, Page, 
+ BizReview,
+ BizReviewSerializer,
+ # MenuSerializer, RoomSerializer, StaffSerializer, ContactSerializer, Menu, Room, Staff, Contact
+ ) 
+#from hotel.models import Hotel
 from users.models import CustomUsers
-
+"""
 class AboutImagesView(ModelViewSet):
     queryset = About.objects.all().select_related()
     serializer_class = AboutSerializer
@@ -64,10 +70,10 @@ class PageView(ModelViewSet):
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
 
-
-class ReviewView(ModelViewSet):
-    queryset = Review.objects.all().select_related()
-    serializer_class = ReviewSerializer
+"""
+class BizReviewView(ModelViewSet):
+    queryset = BizReview.objects.all().select_related()
+    serializer_class = BizReviewSerializer
     lookup_field = "id"
 
     def list(self, request):
@@ -79,7 +85,7 @@ class ReviewView(ModelViewSet):
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
 
-
+"""
 class MenuView(ModelViewSet):
     queryset = Menu.objects.all().prefetch_related()
     serializer_class = MenuSerializer
@@ -93,7 +99,7 @@ class MenuView(ModelViewSet):
             items = items.filter(**pp)
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
-    """
+    
     def create(self, request):
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
@@ -103,7 +109,7 @@ class MenuView(ModelViewSet):
             hotel_obj.save()
             return Response(catser.data)
         return Response("something went wrong")
-    """
+
 class ContactView(ModelViewSet):
     queryset = Contact.objects.all().select_related()
     serializer_class = ContactSerializer
@@ -156,7 +162,7 @@ class StaffView(ModelViewSet):
             items = items.filter(**pp)
         ser = self.get_serializer(items, many=True)
         return Response(ser.data)
-    """
+
     def create(self, request):
         catser = self.get_serializer(data=request.data)
         if catser.is_valid():
@@ -166,4 +172,4 @@ class StaffView(ModelViewSet):
             hotel_obj.save()
             return Response(catser.data)
         return Response("something went wrong")
-    """
+"""

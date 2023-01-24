@@ -5,32 +5,48 @@ from django.urls import path, re_path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework import permissions
 #from staff.views import StaffView
-from menu.views import (RoomImagesView, AboutImagesView, AboutView, MenuView, RoomView, StaffView, ContactView, PageView, ReviewView)
+from menu.views import (
+    #RoomImagesView,
+    #AboutImagesView, 
+    #AboutView, 
+    #MenuView, 
+    #RoomView, 
+    #StaffView, 
+    #ContactView, 
+    #PageView, 
+    BizReviewView
+    )
 from booking.views import BookingView
-from hotel.views import HotelView, VisitLogView, HeroImagesView, EcommerceView
+#from hotel.views import HotelView, VisitLogView, HeroImagesView, EcommerceView
 
 
 
 #from subscriptions.views import SubscriptionsView
-from products.views import (CategoriesView, ProductsView, GenProductsView, ProductThumbsView, AdsView)
+from products.views import (CategoriesView, ProductsView, GenProductsView, ProductThumbsView, AdsView, ProductReviewView, VisitLogView)
 
 from django.shortcuts import render
-
-def apphome(request, page1=None, page2=None, setup=None):
-    return render(request, "app/index.html", {})
 
 def homepage(request, **kw):
     return render(request, "homepage.html", {})
 
+"""
+def apphome(request, page1=None, page2=None, setup=None):
+    return render(request, "app/index.html", {})
+
 def ecomm(request, page2):
     return render(request, "ecomm/index.html", {})
+"""
 
 router = DefaultRouter()
 router.register("categories", CategoriesView)
 router.register("products", ProductsView)
 router.register("gproducts", GenProductsView)
 router.register("ads", AdsView)
-
+router.register("biz-reviews", BizReviewView)
+router.register("product-reviews", ProductReviewView)
+router.register("product-thumbs", ProductThumbsView)
+router.register("hits", VisitLogView)
+"""
 router.register("page", PageView)
 router.register("about", AboutView)
 router.register("room", RoomView)
@@ -41,13 +57,11 @@ router.register("contact", ContactView)
 router.register("review", ReviewView)
 router.register("hotel", HotelView)
 router.register("ecommerce", EcommerceView)
-router.register("hits", VisitLogView)
-router.register("about-thumb", AboutImagesView)
-router.register("hero-thumb", HeroImagesView)
-router.register("logo", HeroImagesView)
-router.register("rooms-thumb", RoomImagesView)
-router.register("product-thumbs", ProductThumbsView)
-
+"""
+#router.register("about-thumb", AboutImagesView)
+#router.register("hero-thumb", HeroImagesView)
+#router.register("logo", HeroImagesView)
+#router.register("rooms-thumb", RoomImagesView)
 
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view

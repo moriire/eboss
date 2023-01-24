@@ -3,7 +3,7 @@ from rest_framework import serializers#.viewsets import ModelViewSet
 from users.models import UserDetailsSerializer
 #from room.models import Room, RoomSerializer
 #from staff.models import Staff, StaffSerializer
-from menu.models import (About, AboutSerializer, ReviewSerializer, Review, Page, Room, Staff, Menu, Contact, PageSerializer, MenuSerializer, StaffSerializer, RoomSerializer, ContactSerializer)
+#from menu.models import (About, AboutSerializer, ReviewSerializer, Review, Page, Room, Staff, Menu, Contact, PageSerializer, MenuSerializer, StaffSerializer, RoomSerializer, ContactSerializer)
 from imgutil import thumbnail
 from users.models import CustomUsers
 from datetime import datetime as dt

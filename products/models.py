@@ -4,6 +4,23 @@ from users.models import CustomUsers, UserDetailsSerializer
 from imgutil import thumbnail
 import os
 
+class VisitLog(models.Model):
+    user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="visited+")
+    ip = models.CharField(max_length=15)
+    visited_on = models.DateField(auto_now_add = True)
+
+    def __str__(self):
+        return self.user.business_name
+        
+    def today(self):
+        return self.objects.filter(visited_on == dt.today()) 
+
+class VisitLogSerializer(ModelSerializer):
+    class Meta:
+        model = VisitLog
+        fields = "__all__"
+        #lookup_field = "email"
+
 #(lambda x: f"products/{'_'.join(x.split(' '))}")(product.name)
 def prod_loc(instance, filename):
 	print("uploading to", instance.product.name)
@@ -53,7 +70,7 @@ class ProductWithCategorySerializer(ModelSerializer):
 		fields = "__all__"
 
 class ProductSerializer(ModelSerializer):
-	user = UserDetailsSerializer()
+	#user = UserDetailsSerializer()
 	class Meta:
 		model = Product
 		fields = "__all__"
@@ -107,6 +124,26 @@ class Ads(models.Model):
 		return f"{self.product.name}-self.created_on"
 # Create your models here.
 
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="hotel+")
+    rate = models.IntegerField(default=5)
+    email = models.EmailField()
+    full_name = models.CharField(max_length=50)
+    #img = models.ImageField(upload_to="review", blank=True)
+    comment = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        verbose_name = "Product Review Section"
+        verbose_name_plural = "Product Reviews Section"
+
+class ProductReviewSerializer(ModelSerializer):
+    class Meta: 
+        model = ProductReview
+        fields = "__all__"
 
 class AdSerializer(ModelSerializer):
 	class Meta:

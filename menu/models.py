@@ -3,7 +3,7 @@ from rest_framework import serializers
 from imgutil import thumbnail
 from users.models import CustomUsers 
 
-class Review(models.Model):
+class BizReview(models.Model):
     user = models.ForeignKey(CustomUsers, on_delete=models.CASCADE, related_name="hotel+")
     rate = models.IntegerField(default=5)
     email = models.EmailField()
@@ -16,14 +16,14 @@ class Review(models.Model):
         return self.full_name
 
     class Meta:
-        verbose_name = "Review Section"
-        verbose_name_plural = "Reviews Ssection"
+        verbose_name = "Biz Review Section"
+        verbose_name_plural = "Biz Reviews Section"
 
-class ReviewSerializer(serializers.ModelSerializer):
+class BizReviewSerializer(serializers.ModelSerializer):
     class Meta: 
-        model = Review
+        model = BizReview
         fields = "__all__"
-
+"""
 class Page(models.Model):
     CHOICES = (
         ("home", "home"),
@@ -202,3 +202,4 @@ class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
         fields = "__all__"
+"""

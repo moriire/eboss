@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from .models import HotelSerializer, Hotel, VisitLog, VisitLogSerializer, Ecommerce, EcommerceSerializer
+from .models import HotelSerializer, Hotel, VisitLog, VisitLogSerializer#, Ecommerce, EcommerceSerializer
 
 def get_ip_address(request):
     user_ip_address = request.META.get('HTTP_X_FORWARDED_FOR')

@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "products",
     'booking',
     'menu',
-    'hotel',
+    #'hotel',
     'coreapi', # Coreapi for coreapi documentation
     'drf_yasg', # drf_yasg fro Swagger documentatio
 ]

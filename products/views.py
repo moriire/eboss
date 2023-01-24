@@ -2,8 +2,12 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from users.models import CustomUsers
-from hotel.models import Ecommerce
+#from hotel.models import Ecommerce
+import datetime as dt
+
 from .models import (
+					VisitLog,
+					VisitLogSerializer,
 					Product,
 					ProductSerializer,
 					GenProduct,
@@ -16,7 +20,9 @@ from .models import (
 					ProductImageSerializer, 
 					Ads, 
 					AdSerializer,
-				 	XAdSerializer
+				 	XAdSerializer,
+				 	ProductReview,
+				 	ProductReviewSerializer
 				 	)
 
 class CategoriesView(ModelViewSet):
@@ -39,7 +45,16 @@ class ProductsView(ModelViewSet):
 class ProductThumbsView(ModelViewSet):
 	queryset = ProductImages.objects.all()
 	serializer_class = ProductImageSerializer
-
+	def list(self, request):
+		items = self.get_queryset()
+		params = request.query_params
+		pp = params.dict()
+		if params:
+			items = items.filter(**pp)
+		catser = self.get_serializer(items, many=True)
+		return Response(
+             	catser.data
+                )
 	def create(self, request, **kw):
 		user = request.query_params.get("user")
 		projection = request.query_params.get("projection")
@@ -62,6 +77,21 @@ class ProductThumbsView(ModelViewSet):
 		ecomm.save()
 		return Response({ "data": "success", "status": 200})
 
+class VisitLogView(ModelViewSet):
+    queryset = VisitLog.objects.all()
+    serializer_class = VisitLogSerializer
+    #lookup_field = "user"
+
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        now = dt.datetime.today()-dt.timedelta(days=7)
+        if params:
+            items = items.filter(visited_on__gte = now, user__pk=pp.get('user__pk'))
+        ser = self.get_serializer(items, many=True)
+        return Response(ser.data)
+
 class AdsView(ModelViewSet):
 	queryset = Ads.objects.all().select_related()
 	serializer_class = AdSerializer
@@ -81,6 +111,20 @@ class AdsView(ModelViewSet):
 		return Response(
              	catser.data
                 )
+class ProductReviewView(ModelViewSet):
+    queryset = ProductReview.objects.all().select_related()
+    serializer_class = ProductReviewSerializer
+    lookup_field = "id"
+
+    def list(self, request):
+        items = self.get_queryset()
+        params = request.query_params
+        pp = params.dict()
+        if params:
+            items = items.filter(**pp)
+        ser = self.get_serializer(items, many=True)
+        return Response(ser.data)
+
 class GenProductsView(ModelViewSet):
 	queryset = GenProduct.objects.all()
 	serializer_class = GenProductSerializer
