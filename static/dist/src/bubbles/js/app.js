@@ -1112,7 +1112,7 @@ module.exports = __webpack_require__.p + "fonts/bootstrap-icons.woff";
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "845bcd1fcabbb48c"; }
+/******/ 		__webpack_require__.h = function() { return "bb941372a0da70ff"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
